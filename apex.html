@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apex Dyno Shop | Precision Tuning &amp; Chassis Dynamometer</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&amp;family=Inter:wght@300;400;500;600;700&amp;family=Orbitron:wght@500;700;800;900&amp;family=Rajdhani:wght@500;600;700&amp;display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        apex: {
+                            dark: '#0B0D10',
+                            card: '#181C26',
+                            border: '#2A3040',
+                            red: '#FF2A38',
+                            redGlow: 'rgba(255, 42, 56, 0.4)',
+                            cyan: '#00F0FF',
+                            gold: '#FFB800'
+                        }
+                    },
+                    fontFamily: {
+                        orbitron: ['Orbitron', 'sans-serif'],
+                        cinzel: ['Cinzel', 'serif'],
+                        rajdhani: ['Rajdhani', 'sans-serif'],
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0B0D10;
+            color: #F1F5F9;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Ambient Carbon Grid Texture */
+        .carbon-bg {
+            background-image: 
+                radial-gradient(rgba(255, 42, 56, 0.08) 1px, transparent 0),
+                radial-gradient(rgba(42, 48, 64, 0.6) 1px, #0B0D10 1px);
+            background-size: 32px 32px;
+            background-position: 0 0, 16px 16px;
+        }
+
+        .glass-card {
+            background: rgba(24, 28, 38, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-card-hover {
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .glass-card-hover:hover {
+            border-color: rgba(255, 42, 56, 0.5);
+            box-shadow: 0 10px 30px -10px rgba(255, 42, 56, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .text-glow-red {
+            text-shadow: 0 0 18px rgba(255, 42, 56, 0.8);
+        }
+
+        .text-glow-cyan {
+            text-shadow: 0 0 18px rgba(0, 240, 255, 0.8);
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B0D10;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2A3040;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #FF2A38;
+        }
+
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            background: #2A3040;
+            height: 6px;
+            border-radius: 3px;
+            outline: none;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: #FF2A38;
+            cursor: pointer;
+            box-shadow: 0 0 14px rgba(255, 42, 56, 0.9);
+            transition: transform 0.15s ease;
+        }
+        input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+        }
+    </style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:Inter, sans-serif;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.inset-0{inset:0px}.-top-3\.5{top:-0.875rem}.bottom-6{bottom:1.5rem}.left-1\/2{left:50%}.right-6{right:1.5rem}.top-0{top:0px}.top-10{top:2.5rem}.z-10{z-index:10}.z-40{z-index:40}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.mb-1{margin-bottom:0.25rem}.mb-10{margin-bottom:2.5rem}.mb-12{margin-bottom:3rem}.mb-16{margin-bottom:4rem}.mb-2{margin-bottom:0.5rem}.mb-3{margin-bottom:0.75rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}.mt-2{margin-top:0.5rem}.mt-3{margin-top:0.75rem}.mt-6{margin-top:1.5rem}.block{display:block}.inline-block{display:inline-block}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.aspect-\[16\/9\]{aspect-ratio:16/9}.h-0\.5{height:0.125rem}.h-1\.5{height:0.375rem}.h-10{height:2.5rem}.h-11{height:2.75rem}.h-16{height:4rem}.h-2\.5{height:0.625rem}.h-20{height:5rem}.h-3{height:0.75rem}.h-3\.5{height:0.875rem}.h-4{height:1rem}.h-5{height:1.25rem}.h-6{height:1.5rem}.h-7{height:1.75rem}.h-full{height:100%}.min-h-screen{min-height:100vh}.w-1\.5{width:0.375rem}.w-10{width:2.5rem}.w-11{width:2.75rem}.w-16{width:4rem}.w-2\.5{width:0.625rem}.w-3{width:0.75rem}.w-3\.5{width:0.875rem}.w-4{width:1rem}.w-5{width:1.25rem}.w-6{width:1.5rem}.w-7{width:1.75rem}.w-full{width:100%}.max-w-2xl{max-width:42rem}.max-w-3xl{max-width:48rem}.max-w-4xl{max-width:56rem}.max-w-7xl{max-width:80rem}.max-w-lg{max-width:32rem}.max-w-sm{max-width:24rem}.shrink-0{flex-shrink:0}.-translate-x-1\/2{--tw-translate-x:-50%;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.translate-y-24{--tw-translate-y:6rem;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.transform{transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}@keyframes ping{75%, 100%{transform:scale(2);opacity:0}}.animate-ping{animation:ping 1s cubic-bezier(0, 0, 0.2, 1) infinite}@keyframes pulse{50%{opacity:.5}}.animate-pulse{animation:pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite}.cursor-pointer{cursor:pointer}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.flex-col{flex-direction:column}.items-start{align-items:flex-start}.items-center{align-items:center}.items-baseline{align-items:baseline}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:0.25rem}.gap-1\.5{gap:0.375rem}.gap-2{gap:0.5rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.gap-8{gap:2rem}.space-x-8 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(2rem * var(--tw-space-x-reverse));margin-left:calc(2rem * calc(1 - var(--tw-space-x-reverse)))}.space-y-1 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.25rem * var(--tw-space-y-reverse))}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.space-y-4 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.space-y-6 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.5rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.scroll-smooth{scroll-behavior:smooth}.rounded{border-radius:0.25rem}.rounded-2xl{border-radius:1rem}.rounded-\[10px\]{border-radius:10px}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-xl{border-radius:0.75rem}.border{border-width:1px}.border-2{border-width:2px}.border-y{border-top-width:1px;border-bottom-width:1px}.border-b{border-bottom-width:1px}.border-b-2{border-bottom-width:2px}.border-t{border-top-width:1px}.border-apex-border{--tw-border-opacity:1;border-color:rgb(42 48 64 / var(--tw-border-opacity, 1))}.border-apex-cyan{--tw-border-opacity:1;border-color:rgb(0 240 255 / var(--tw-border-opacity, 1))}.border-apex-cyan\/30{border-color:rgb(0 240 255 / 0.3)}.border-apex-gold\/30{border-color:rgb(255 184 0 / 0.3)}.border-apex-red{--tw-border-opacity:1;border-color:rgb(255 42 56 / var(--tw-border-opacity, 1))}.border-apex-red\/30{border-color:rgb(255 42 56 / 0.3)}.border-apex-red\/40{border-color:rgb(255 42 56 / 0.4)}.border-emerald-500{--tw-border-opacity:1;border-color:rgb(16 185 129 / var(--tw-border-opacity, 1))}.border-slate-700{--tw-border-opacity:1;border-color:rgb(51 65 85 / var(--tw-border-opacity, 1))}.border-slate-800{--tw-border-opacity:1;border-color:rgb(30 41 59 / var(--tw-border-opacity, 1))}.border-slate-800\/80{border-color:rgb(30 41 59 / 0.8)}.border-white\/20{border-color:rgb(255 255 255 / 0.2)}.border-b-apex-red{--tw-border-opacity:1;border-bottom-color:rgb(255 42 56 / var(--tw-border-opacity, 1))}.bg-apex-card\/60{background-color:rgb(24 28 38 / 0.6)}.bg-apex-cyan\/10{background-color:rgb(0 240 255 / 0.1)}.bg-apex-cyan\/20{background-color:rgb(0 240 255 / 0.2)}.bg-apex-dark{--tw-bg-opacity:1;background-color:rgb(11 13 16 / var(--tw-bg-opacity, 1))}.bg-apex-dark\/90{background-color:rgb(11 13 16 / 0.9)}.bg-apex-dark\/95{background-color:rgb(11 13 16 / 0.95)}.bg-apex-gold{--tw-bg-opacity:1;background-color:rgb(255 184 0 / var(--tw-bg-opacity, 1))}.bg-apex-gold\/10{background-color:rgb(255 184 0 / 0.1)}.bg-apex-red{--tw-bg-opacity:1;background-color:rgb(255 42 56 / var(--tw-bg-opacity, 1))}.bg-apex-red\/10{background-color:rgb(255 42 56 / 0.1)}.bg-apex-red\/20{background-color:rgb(255 42 56 / 0.2)}.bg-black\/80{background-color:rgb(0 0 0 / 0.8)}.bg-black\/85{background-color:rgb(0 0 0 / 0.85)}.bg-emerald-500{--tw-bg-opacity:1;background-color:rgb(16 185 129 / var(--tw-bg-opacity, 1))}.bg-emerald-500\/20{background-color:rgb(16 185 129 / 0.2)}.bg-gradient-to-br{background-image:linear-gradient(to bottom right, var(--tw-gradient-stops))}.bg-gradient-to-r{background-image:linear-gradient(to right, var(--tw-gradient-stops))}.from-apex-cyan{--tw-gradient-from:#00F0FF var(--tw-gradient-from-position);--tw-gradient-to:rgb(0 240 255 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-apex-red{--tw-gradient-from:#FF2A38 var(--tw-gradient-from-position);--tw-gradient-to:rgb(255 42 56 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-white{--tw-gradient-from:#fff var(--tw-gradient-from-position);--tw-gradient-to:rgb(255 255 255 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.via-apex-gold{--tw-gradient-to:rgb(255 184 0 / 0)  var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), #FFB800 var(--tw-gradient-via-position), var(--tw-gradient-to)}.via-rose-600{--tw-gradient-to:rgb(225 29 72 / 0)  var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), #e11d48 var(--tw-gradient-via-position), var(--tw-gradient-to)}.via-slate-200{--tw-gradient-to:rgb(226 232 240 / 0)  var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), #e2e8f0 var(--tw-gradient-via-position), var(--tw-gradient-to)}.to-apex-cyan{--tw-gradient-to:#00F0FF var(--tw-gradient-to-position)}.to-apex-red{--tw-gradient-to:#FF2A38 var(--tw-gradient-to-position)}.to-rose-700{--tw-gradient-to:#be123c var(--tw-gradient-to-position)}.bg-clip-text{-webkit-background-clip:text;background-clip:text}.fill-current{fill:currentColor}.p-0\.5{padding:0.125rem}.p-1{padding:0.25rem}.p-1\.5{padding:0.375rem}.p-2{padding:0.5rem}.p-3{padding:0.75rem}.p-3\.5{padding:0.875rem}.p-4{padding:1rem}.p-6{padding:1.5rem}.p-8{padding:2rem}.p-\[2px\]{padding:2px}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.px-8{padding-left:2rem;padding-right:2rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-1\.5{padding-top:0.375rem;padding-bottom:0.375rem}.py-12{padding-top:3rem;padding-bottom:3rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-2\.5{padding-top:0.625rem;padding-bottom:0.625rem}.py-20{padding-top:5rem;padding-bottom:5rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-3\.5{padding-top:0.875rem;padding-bottom:0.875rem}.py-4{padding-top:1rem;padding-bottom:1rem}.py-5{padding-top:1.25rem;padding-bottom:1.25rem}.px-2\.5{padding-left:0.625rem;padding-right:0.625rem}.pb-28{padding-bottom:7rem}.pb-3{padding-bottom:0.75rem}.pt-2{padding-top:0.5rem}.pt-24{padding-top:6rem}.pt-4{padding-top:1rem}.pt-6{padding-top:1.5rem}.text-left{text-align:left}.text-center{text-align:center}.font-cinzel{font-family:Cinzel, serif}.font-mono{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}.font-orbitron{font-family:Orbitron, sans-serif}.font-rajdhani{font-family:Rajdhani, sans-serif}.font-sans{font-family:Inter, sans-serif}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-5xl{font-size:3rem;line-height:1}.text-\[10px\]{font-size:10px}.text-\[11px\]{font-size:11px}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-black{font-weight:900}.font-bold{font-weight:700}.font-extrabold{font-weight:800}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.leading-relaxed{line-height:1.625}.leading-tight{line-height:1.25}.tracking-\[0\.25em\]{letter-spacing:0.25em}.tracking-tight{letter-spacing:-0.025em}.tracking-wide{letter-spacing:0.025em}.tracking-wider{letter-spacing:0.05em}.tracking-widest{letter-spacing:0.1em}.text-apex-cyan{--tw-text-opacity:1;color:rgb(0 240 255 / var(--tw-text-opacity, 1))}.text-apex-gold{--tw-text-opacity:1;color:rgb(255 184 0 / var(--tw-text-opacity, 1))}.text-apex-red{--tw-text-opacity:1;color:rgb(255 42 56 / var(--tw-text-opacity, 1))}.text-emerald-400{--tw-text-opacity:1;color:rgb(52 211 153 / var(--tw-text-opacity, 1))}.text-slate-100{--tw-text-opacity:1;color:rgb(241 245 249 / var(--tw-text-opacity, 1))}.text-slate-200{--tw-text-opacity:1;color:rgb(226 232 240 / var(--tw-text-opacity, 1))}.text-slate-300{--tw-text-opacity:1;color:rgb(203 213 225 / var(--tw-text-opacity, 1))}.text-slate-400{--tw-text-opacity:1;color:rgb(148 163 184 / var(--tw-text-opacity, 1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139 / var(--tw-text-opacity, 1))}.text-transparent{color:transparent}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.accent-apex-red{accent-color:#FF2A38}.opacity-0{opacity:0}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgb(0 0 0 / 0.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-md{--tw-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-xl{--tw-shadow:0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-apex-red\/10{--tw-shadow-color:rgb(255 42 56 / 0.1);--tw-shadow:var(--tw-shadow-colored)}.shadow-apex-red\/30{--tw-shadow-color:rgb(255 42 56 / 0.3);--tw-shadow:var(--tw-shadow-colored)}.shadow-apex-red\/40{--tw-shadow-color:rgb(255 42 56 / 0.4);--tw-shadow:var(--tw-shadow-colored)}.backdrop-blur-md{--tw-backdrop-blur:blur(12px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.backdrop-blur-sm{--tw-backdrop-blur:blur(4px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-colors{transition-property:color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-300{transition-duration:300ms}.duration-75{transition-duration:75ms}.selection\:bg-apex-red *::selection{--tw-bg-opacity:1;background-color:rgb(255 42 56 / var(--tw-bg-opacity, 1))}.selection\:text-white *::selection{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.selection\:bg-apex-red::selection{--tw-bg-opacity:1;background-color:rgb(255 42 56 / var(--tw-bg-opacity, 1))}.selection\:text-white::selection{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.hover\:scale-105:hover{--tw-scale-x:1.05;--tw-scale-y:1.05;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.hover\:border-apex-cyan:hover{--tw-border-opacity:1;border-color:rgb(0 240 255 / var(--tw-border-opacity, 1))}.hover\:border-apex-gold:hover{--tw-border-opacity:1;border-color:rgb(255 184 0 / var(--tw-border-opacity, 1))}.hover\:border-apex-red:hover{--tw-border-opacity:1;border-color:rgb(255 42 56 / var(--tw-border-opacity, 1))}.hover\:border-slate-700:hover{--tw-border-opacity:1;border-color:rgb(51 65 85 / var(--tw-border-opacity, 1))}.hover\:bg-rose-600:hover{--tw-bg-opacity:1;background-color:rgb(225 29 72 / var(--tw-bg-opacity, 1))}.hover\:from-rose-600:hover{--tw-gradient-from:#e11d48 var(--tw-gradient-from-position);--tw-gradient-to:rgb(225 29 72 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.hover\:to-red-600:hover{--tw-gradient-to:#dc2626 var(--tw-gradient-to-position)}.hover\:text-apex-red:hover{--tw-text-opacity:1;color:rgb(255 42 56 / var(--tw-text-opacity, 1))}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.hover\:brightness-110:hover{--tw-brightness:brightness(1.1);filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.focus\:border-apex-red:focus{--tw-border-opacity:1;border-color:rgb(255 42 56 / var(--tw-border-opacity, 1))}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.active\:scale-95:active{--tw-scale-x:.95;--tw-scale-y:.95;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.group:hover .group-hover\:bg-transparent{background-color:transparent}.group:hover .group-hover\:text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}@media (min-width: 640px){.sm\:flex{display:flex}.sm\:aspect-\[21\/9\]{aspect-ratio:21/9}.sm\:w-auto{width:auto}.sm\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.sm\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.sm\:grid-cols-4{grid-template-columns:repeat(4, minmax(0, 1fr))}.sm\:flex-row{flex-direction:row}.sm\:p-10{padding:2.5rem}.sm\:p-8{padding:2rem}.sm\:px-6{padding-left:1.5rem;padding-right:1.5rem}.sm\:text-left{text-align:left}.sm\:text-4xl{font-size:2.25rem;line-height:2.5rem}.sm\:text-5xl{font-size:3rem;line-height:1}.sm\:text-6xl{font-size:3.75rem;line-height:1}.sm\:text-base{font-size:1rem;line-height:1.5rem}.sm\:text-lg{font-size:1.125rem;line-height:1.75rem}}@media (min-width: 768px){.md\:col-span-2{grid-column:span 2 / span 2}.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.md\:grid-cols-4{grid-template-columns:repeat(4, minmax(0, 1fr))}.md\:flex-row{flex-direction:row}.md\:items-end{align-items:flex-end}.md\:text-7xl{font-size:4.5rem;line-height:1}}@media (min-width: 1024px){.lg\:col-span-4{grid-column:span 4 / span 4}.lg\:col-span-5{grid-column:span 5 / span 5}.lg\:col-span-7{grid-column:span 7 / span 7}.lg\:col-span-8{grid-column:span 8 / span 8}.lg\:flex{display:flex}.lg\:hidden{display:none}.lg\:grid-cols-12{grid-template-columns:repeat(12, minmax(0, 1fr))}.lg\:grid-cols-4{grid-template-columns:repeat(4, minmax(0, 1fr))}.lg\:px-8{padding-left:2rem;padding-right:2rem}}</style><style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:Inter, sans-serif;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.inset-0{inset:0px}.-top-3\.5{top:-0.875rem}.bottom-6{bottom:1.5rem}.left-1\/2{left:50%}.right-6{right:1.5rem}.top-0{top:0px}.top-10{top:2.5rem}.z-10{z-index:10}.z-40{z-index:40}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.mb-1{margin-bottom:0.25rem}.mb-10{margin-bottom:2.5rem}.mb-12{margin-bottom:3rem}.mb-16{margin-bottom:4rem}.mb-2{margin-bottom:0.5rem}.mb-3{margin-bottom:0.75rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}.mt-2{margin-top:0.5rem}.mt-3{margin-top:0.75rem}.mt-6{margin-top:1.5rem}.block{display:block}.inline-block{display:inline-block}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.aspect-\[16\/9\]{aspect-ratio:16/9}.h-0\.5{height:0.125rem}.h-1\.5{height:0.375rem}.h-10{height:2.5rem}.h-11{height:2.75rem}.h-16{height:4rem}.h-2\.5{height:0.625rem}.h-20{height:5rem}.h-3{height:0.75rem}.h-3\.5{height:0.875rem}.h-4{height:1rem}.h-5{height:1.25rem}.h-6{height:1.5rem}.h-7{height:1.75rem}.h-full{height:100%}.min-h-screen{min-height:100vh}.w-1\.5{width:0.375rem}.w-10{width:2.5rem}.w-11{width:2.75rem}.w-16{width:4rem}.w-2\.5{width:0.625rem}.w-3{width:0.75rem}.w-3\.5{width:0.875rem}.w-4{width:1rem}.w-5{width:1.25rem}.w-6{width:1.5rem}.w-7{width:1.75rem}.w-full{width:100%}.max-w-2xl{max-width:42rem}.max-w-3xl{max-width:48rem}.max-w-4xl{max-width:56rem}.max-w-7xl{max-width:80rem}.max-w-lg{max-width:32rem}.max-w-sm{max-width:24rem}.shrink-0{flex-shrink:0}.-translate-x-1\/2{--tw-translate-x:-50%;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.translate-y-24{--tw-translate-y:6rem;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.transform{transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}@keyframes ping{75%, 100%{transform:scale(2);opacity:0}}.animate-ping{animation:ping 1s cubic-bezier(0, 0, 0.2, 1) infinite}@keyframes pulse{50%{opacity:.5}}.animate-pulse{animation:pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite}.cursor-pointer{cursor:pointer}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.flex-col{flex-direction:column}.items-start{align-items:flex-start}.items-center{align-items:center}.items-baseline{align-items:baseline}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:0.25rem}.gap-1\.5{gap:0.375rem}.gap-2{gap:0.5rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.gap-8{gap:2rem}.space-x-8 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(2rem * var(--tw-space-x-reverse));margin-left:calc(2rem * calc(1 - var(--tw-space-x-reverse)))}.space-y-1 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.25rem * var(--tw-space-y-reverse))}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.space-y-4 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.space-y-6 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.5rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.scroll-smooth{scroll-behavior:smooth}.rounded{border-radius:0.25rem}.rounded-2xl{border-radius:1rem}.rounded-\[10px\]{border-radius:10px}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-xl{border-radius:0.75rem}.border{border-width:1px}.border-2{border-width:2px}.border-y{border-top-width:1px;border-bottom-width:1px}.border-b{border-bottom-width:1px}.border-b-2{border-bottom-width:2px}.border-t{border-top-width:1px}.border-apex-border{--tw-border-opacity:1;border-color:rgb(42 48 64 / var(--tw-border-opacity, 1))}.border-apex-cyan{--tw-border-opacity:1;border-color:rgb(0 240 255 / var(--tw-border-opacity, 1))}.border-apex-cyan\/30{border-color:rgb(0 240 255 / 0.3)}.border-apex-gold\/30{border-color:rgb(255 184 0 / 0.3)}.border-apex-red{--tw-border-opacity:1;border-color:rgb(255 42 56 / var(--tw-border-opacity, 1))}.border-apex-red\/30{border-color:rgb(255 42 56 / 0.3)}.border-apex-red\/40{border-color:rgb(255 42 56 / 0.4)}.border-emerald-500{--tw-border-opacity:1;border-color:rgb(16 185 129 / var(--tw-border-opacity, 1))}.border-slate-700{--tw-border-opacity:1;border-color:rgb(51 65 85 / var(--tw-border-opacity, 1))}.border-slate-800{--tw-border-opacity:1;border-color:rgb(30 41 59 / var(--tw-border-opacity, 1))}.border-slate-800\/80{border-color:rgb(30 41 59 / 0.8)}.border-white\/20{border-color:rgb(255 255 255 / 0.2)}.border-b-apex-red{--tw-border-opacity:1;border-bottom-color:rgb(255 42 56 / var(--tw-border-opacity, 1))}.bg-apex-card\/60{background-color:rgb(24 28 38 / 0.6)}.bg-apex-cyan\/10{background-color:rgb(0 240 255 / 0.1)}.bg-apex-cyan\/20{background-color:rgb(0 240 255 / 0.2)}.bg-apex-dark{--tw-bg-opacity:1;background-color:rgb(11 13 16 / var(--tw-bg-opacity, 1))}.bg-apex-dark\/90{background-color:rgb(11 13 16 / 0.9)}.bg-apex-dark\/95{background-color:rgb(11 13 16 / 0.95)}.bg-apex-gold{--tw-bg-opacity:1;background-color:rgb(255 184 0 / var(--tw-bg-opacity, 1))}.bg-apex-gold\/10{background-color:rgb(255 184 0 / 0.1)}.bg-apex-red{--tw-bg-opacity:1;background-color:rgb(255 42 56 / var(--tw-bg-opacity, 1))}.bg-apex-red\/10{background-color:rgb(255 42 56 / 0.1)}.bg-apex-red\/20{background-color:rgb(255 42 56 / 0.2)}.bg-black\/80{background-color:rgb(0 0 0 / 0.8)}.bg-black\/85{background-color:rgb(0 0 0 / 0.85)}.bg-emerald-500{--tw-bg-opacity:1;background-color:rgb(16 185 129 / var(--tw-bg-opacity, 1))}.bg-emerald-500\/20{background-color:rgb(16 185 129 / 0.2)}.bg-gradient-to-br{background-image:linear-gradient(to bottom right, var(--tw-gradient-stops))}.bg-gradient-to-r{background-image:linear-gradient(to right, var(--tw-gradient-stops))}.from-apex-cyan{--tw-gradient-from:#00F0FF var(--tw-gradient-from-position);--tw-gradient-to:rgb(0 240 255 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-apex-red{--tw-gradient-from:#FF2A38 var(--tw-gradient-from-position);--tw-gradient-to:rgb(255 42 56 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-white{--tw-gradient-from:#fff var(--tw-gradient-from-position);--tw-gradient-to:rgb(255 255 255 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.via-apex-gold{--tw-gradient-to:rgb(255 184 0 / 0)  var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), #FFB800 var(--tw-gradient-via-position), var(--tw-gradient-to)}.via-rose-600{--tw-gradient-to:rgb(225 29 72 / 0)  var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), #e11d48 var(--tw-gradient-via-position), var(--tw-gradient-to)}.via-slate-200{--tw-gradient-to:rgb(226 232 240 / 0)  var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), #e2e8f0 var(--tw-gradient-via-position), var(--tw-gradient-to)}.to-apex-cyan{--tw-gradient-to:#00F0FF var(--tw-gradient-to-position)}.to-apex-red{--tw-gradient-to:#FF2A38 var(--tw-gradient-to-position)}.to-rose-700{--tw-gradient-to:#be123c var(--tw-gradient-to-position)}.bg-clip-text{-webkit-background-clip:text;background-clip:text}.fill-current{fill:currentColor}.p-0\.5{padding:0.125rem}.p-1{padding:0.25rem}.p-1\.5{padding:0.375rem}.p-2{padding:0.5rem}.p-3{padding:0.75rem}.p-3\.5{padding:0.875rem}.p-4{padding:1rem}.p-6{padding:1.5rem}.p-8{padding:2rem}.p-\[2px\]{padding:2px}.px-2\.5{padding-left:0.625rem;padding-right:0.625rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.px-8{padding-left:2rem;padding-right:2rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-1\.5{padding-top:0.375rem;padding-bottom:0.375rem}.py-12{padding-top:3rem;padding-bottom:3rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-2\.5{padding-top:0.625rem;padding-bottom:0.625rem}.py-20{padding-top:5rem;padding-bottom:5rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-3\.5{padding-top:0.875rem;padding-bottom:0.875rem}.py-4{padding-top:1rem;padding-bottom:1rem}.py-5{padding-top:1.25rem;padding-bottom:1.25rem}.pb-28{padding-bottom:7rem}.pb-3{padding-bottom:0.75rem}.pt-2{padding-top:0.5rem}.pt-24{padding-top:6rem}.pt-4{padding-top:1rem}.pt-6{padding-top:1.5rem}.text-left{text-align:left}.text-center{text-align:center}.font-cinzel{font-family:Cinzel, serif}.font-mono{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}.font-orbitron{font-family:Orbitron, sans-serif}.font-rajdhani{font-family:Rajdhani, sans-serif}.font-sans{font-family:Inter, sans-serif}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-5xl{font-size:3rem;line-height:1}.text-\[10px\]{font-size:10px}.text-\[11px\]{font-size:11px}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-black{font-weight:900}.font-bold{font-weight:700}.font-extrabold{font-weight:800}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.leading-relaxed{line-height:1.625}.leading-tight{line-height:1.25}.tracking-\[0\.25em\]{letter-spacing:0.25em}.tracking-tight{letter-spacing:-0.025em}.tracking-wide{letter-spacing:0.025em}.tracking-wider{letter-spacing:0.05em}.tracking-widest{letter-spacing:0.1em}.text-slate-100{--tw-text-opacity:1;color:rgb(241 245 249 / var(--tw-text-opacity, 1))}.text-apex-cyan{--tw-text-opacity:1;color:rgb(0 240 255 / var(--tw-text-opacity, 1))}.text-apex-gold{--tw-text-opacity:1;color:rgb(255 184 0 / var(--tw-text-opacity, 1))}.text-apex-red{--tw-text-opacity:1;color:rgb(255 42 56 / var(--tw-text-opacity, 1))}.text-emerald-400{--tw-text-opacity:1;color:rgb(52 211 153 / var(--tw-text-opacity, 1))}.text-slate-200{--tw-text-opacity:1;color:rgb(226 232 240 / var(--tw-text-opacity, 1))}.text-slate-300{--tw-text-opacity:1;color:rgb(203 213 225 / var(--tw-text-opacity, 1))}.text-slate-400{--tw-text-opacity:1;color:rgb(148 163 184 / var(--tw-text-opacity, 1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139 / var(--tw-text-opacity, 1))}.text-transparent{color:transparent}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.accent-apex-red{accent-color:#FF2A38}.opacity-0{opacity:0}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgb(0 0 0 / 0.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-md{--tw-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-xl{--tw-shadow:0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-apex-red\/10{--tw-shadow-color:rgb(255 42 56 / 0.1);--tw-shadow:var(--tw-shadow-colored)}.shadow-apex-red\/30{--tw-shadow-color:rgb(255 42 56 / 0.3);--tw-shadow:var(--tw-shadow-colored)}.shadow-apex-red\/40{--tw-shadow-color:rgb(255 42 56 / 0.4);--tw-shadow:var(--tw-shadow-colored)}.backdrop-blur-md{--tw-backdrop-blur:blur(12px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.backdrop-blur-sm{--tw-backdrop-blur:blur(4px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-colors{transition-property:color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-300{transition-duration:300ms}.duration-75{transition-duration:75ms}.selection\:bg-apex-red *::selection{--tw-bg-opacity:1;background-color:rgb(255 42 56 / var(--tw-bg-opacity, 1))}.selection\:text-white *::selection{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.selection\:bg-apex-red::selection{--tw-bg-opacity:1;background-color:rgb(255 42 56 / var(--tw-bg-opacity, 1))}.selection\:text-white::selection{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.hover\:scale-105:hover{--tw-scale-x:1.05;--tw-scale-y:1.05;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.hover\:border-apex-cyan:hover{--tw-border-opacity:1;border-color:rgb(0 240 255 / var(--tw-border-opacity, 1))}.hover\:border-apex-gold:hover{--tw-border-opacity:1;border-color:rgb(255 184 0 / var(--tw-border-opacity, 1))}.hover\:border-apex-red:hover{--tw-border-opacity:1;border-color:rgb(255 42 56 / var(--tw-border-opacity, 1))}.hover\:border-slate-700:hover{--tw-border-opacity:1;border-color:rgb(51 65 85 / var(--tw-border-opacity, 1))}.hover\:bg-rose-600:hover{--tw-bg-opacity:1;background-color:rgb(225 29 72 / var(--tw-bg-opacity, 1))}.hover\:from-rose-600:hover{--tw-gradient-from:#e11d48 var(--tw-gradient-from-position);--tw-gradient-to:rgb(225 29 72 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.hover\:to-red-600:hover{--tw-gradient-to:#dc2626 var(--tw-gradient-to-position)}.hover\:text-apex-red:hover{--tw-text-opacity:1;color:rgb(255 42 56 / var(--tw-text-opacity, 1))}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.hover\:brightness-110:hover{--tw-brightness:brightness(1.1);filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.focus\:border-apex-red:focus{--tw-border-opacity:1;border-color:rgb(255 42 56 / var(--tw-border-opacity, 1))}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.active\:scale-95:active{--tw-scale-x:.95;--tw-scale-y:.95;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.group:hover .group-hover\:bg-transparent{background-color:transparent}.group:hover .group-hover\:text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}@media (min-width: 640px){.sm\:flex{display:flex}.sm\:aspect-\[21\/9\]{aspect-ratio:21/9}.sm\:w-auto{width:auto}.sm\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.sm\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.sm\:grid-cols-4{grid-template-columns:repeat(4, minmax(0, 1fr))}.sm\:flex-row{flex-direction:row}.sm\:p-10{padding:2.5rem}.sm\:p-8{padding:2rem}.sm\:px-6{padding-left:1.5rem;padding-right:1.5rem}.sm\:text-left{text-align:left}.sm\:text-4xl{font-size:2.25rem;line-height:2.5rem}.sm\:text-5xl{font-size:3rem;line-height:1}.sm\:text-6xl{font-size:3.75rem;line-height:1}.sm\:text-base{font-size:1rem;line-height:1.5rem}.sm\:text-lg{font-size:1.125rem;line-height:1.75rem}}@media (min-width: 768px){.md\:col-span-2{grid-column:span 2 / span 2}.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.md\:grid-cols-4{grid-template-columns:repeat(4, minmax(0, 1fr))}.md\:flex-row{flex-direction:row}.md\:items-end{align-items:flex-end}.md\:text-7xl{font-size:4.5rem;line-height:1}}@media (min-width: 1024px){.lg\:col-span-4{grid-column:span 4 / span 4}.lg\:col-span-5{grid-column:span 5 / span 5}.lg\:col-span-7{grid-column:span 7 / span 7}.lg\:col-span-8{grid-column:span 8 / span 8}.lg\:flex{display:flex}.lg\:hidden{display:none}.lg\:grid-cols-12{grid-template-columns:repeat(12, minmax(0, 1fr))}.lg\:grid-cols-4{grid-template-columns:repeat(4, minmax(0, 1fr))}.lg\:px-8{padding-left:2rem;padding-right:2rem}}</style><style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:Inter, sans-serif;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.inset-0{inset:0px}.-top-3\.5{top:-0.875rem}.bottom-6{bottom:1.5rem}.left-1\/2{left:50%}.right-6{right:1.5rem}.top-0{top:0px}.top-10{top:2.5rem}.z-10{z-index:10}.z-40{z-index:40}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.mb-1{margin-bottom:0.25rem}.mb-10{margin-bottom:2.5rem}.mb-12{margin-bottom:3rem}.mb-16{margin-bottom:4rem}.mb-2{margin-bottom:0.5rem}.mb-3{margin-bottom:0.75rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}.mt-2{margin-top:0.5rem}.mt-3{margin-top:0.75rem}.mt-6{margin-top:1.5rem}.block{display:block}.inline-block{display:inline-block}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.aspect-\[16\/9\]{aspect-ratio:16/9}.h-0\.5{height:0.125rem}.h-1\.5{height:0.375rem}.h-10{height:2.5rem}.h-11{height:2.75rem}.h-16{height:4rem}.h-2\.5{height:0.625rem}.h-20{height:5rem}.h-3{height:0.75rem}.h-3\.5{height:0.875rem}.h-4{height:1rem}.h-5{height:1.25rem}.h-6{height:1.5rem}.h-7{height:1.75rem}.h-full{height:100%}.min-h-screen{min-height:100vh}.w-1\.5{width:0.375rem}.w-10{width:2.5rem}.w-11{width:2.75rem}.w-16{width:4rem}.w-2\.5{width:0.625rem}.w-3{width:0.75rem}.w-3\.5{width:0.875rem}.w-4{width:1rem}.w-5{width:1.25rem}.w-6{width:1.5rem}.w-7{width:1.75rem}.w-full{width:100%}.max-w-2xl{max-width:42rem}.max-w-3xl{max-width:48rem}.max-w-4xl{max-width:56rem}.max-w-7xl{max-width:80rem}.max-w-lg{max-width:32rem}.max-w-sm{max-width:24rem}.shrink-0{flex-shrink:0}.-translate-x-1\/2{--tw-translate-x:-50%;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.translate-y-24{--tw-translate-y:6rem;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.transform{transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}@keyframes ping{75%, 100%{transform:scale(2);opacity:0}}.animate-ping{animation:ping 1s cubic-bezier(0, 0, 0.2, 1) infinite}@keyframes pulse{50%{opacity:.5}}.animate-pulse{animation:pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite}.cursor-pointer{cursor:pointer}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.flex-col{flex-direction:column}.items-start{align-items:flex-start}.items-center{align-items:center}.items-baseline{align-items:baseline}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:0.25rem}.gap-1\.5{gap:0.375rem}.gap-2{gap:0.5rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.gap-8{gap:2rem}.space-x-8 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(2rem * var(--tw-space-x-reverse));margin-left:calc(2rem * calc(1 - var(--tw-space-x-reverse)))}.space-y-1 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.25rem * var(--tw-space-y-reverse))}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.space-y-4 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.space-y-6 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.5rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.scroll-smooth{scroll-behavior:smooth}.rounded{border-radius:0.25rem}.rounded-2xl{border-radius:1rem}.rounded-\[10px\]{border-radius:10px}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-xl{border-radius:0.75rem}.border{border-width:1px}.border-2{border-width:2px}.border-y{border-top-width:1px;border-bottom-width:1px}.border-b{border-bottom-width:1px}.border-b-2{border-bottom-width:2px}.border-t{border-top-width:1px}.border-apex-border{--tw-border-opacity:1;border-color:rgb(42 48 64 / var(--tw-border-opacity, 1))}.border-apex-cyan{--tw-border-opacity:1;border-color:rgb(0 240 255 / var(--tw-border-opacity, 1))}.border-apex-cyan\/30{border-color:rgb(0 240 255 / 0.3)}.border-apex-gold\/30{border-color:rgb(255 184 0 / 0.3)}.border-apex-red{--tw-border-opacity:1;border-color:rgb(255 42 56 / var(--tw-border-opacity, 1))}.border-apex-red\/30{border-color:rgb(255 42 56 / 0.3)}.border-apex-red\/40{border-color:rgb(255 42 56 / 0.4)}.border-emerald-500{--tw-border-opacity:1;border-color:rgb(16 185 129 / var(--tw-border-opacity, 1))}.border-slate-700{--tw-border-opacity:1;border-color:rgb(51 65 85 / var(--tw-border-opacity, 1))}.border-slate-800{--tw-border-opacity:1;border-color:rgb(30 41 59 / var(--tw-border-opacity, 1))}.border-slate-800\/80{border-color:rgb(30 41 59 / 0.8)}.border-white\/20{border-color:rgb(255 255 255 / 0.2)}.border-b-apex-red{--tw-border-opacity:1;border-bottom-color:rgb(255 42 56 / var(--tw-border-opacity, 1))}.bg-apex-card\/60{background-color:rgb(24 28 38 / 0.6)}.bg-apex-cyan\/10{background-color:rgb(0 240 255 / 0.1)}.bg-apex-cyan\/20{background-color:rgb(0 240 255 / 0.2)}.bg-apex-dark{--tw-bg-opacity:1;background-color:rgb(11 13 16 / var(--tw-bg-opacity, 1))}.bg-apex-dark\/90{background-color:rgb(11 13 16 / 0.9)}.bg-apex-dark\/95{background-color:rgb(11 13 16 / 0.95)}.bg-apex-gold{--tw-bg-opacity:1;background-color:rgb(255 184 0 / var(--tw-bg-opacity, 1))}.bg-apex-gold\/10{background-color:rgb(255 184 0 / 0.1)}.bg-apex-red{--tw-bg-opacity:1;background-color:rgb(255 42 56 / var(--tw-bg-opacity, 1))}.bg-apex-red\/10{background-color:rgb(255 42 56 / 0.1)}.bg-apex-red\/20{background-color:rgb(255 42 56 / 0.2)}.bg-black\/80{background-color:rgb(0 0 0 / 0.8)}.bg-black\/85{background-color:rgb(0 0 0 / 0.85)}.bg-emerald-500{--tw-bg-opacity:1;background-color:rgb(16 185 129 / var(--tw-bg-opacity, 1))}.bg-emerald-500\/20{background-color:rgb(16 185 129 / 0.2)}.bg-gradient-to-br{background-image:linear-gradient(to bottom right, var(--tw-gradient-stops))}.bg-gradient-to-r{background-image:linear-gradient(to right, var(--tw-gradient-stops))}.from-apex-cyan{--tw-gradient-from:#00F0FF var(--tw-gradient-from-position);--tw-gradient-to:rgb(0 240 255 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-apex-red{--tw-gradient-from:#FF2A38 var(--tw-gradient-from-position);--tw-gradient-to:rgb(255 42 56 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-white{--tw-gradient-from:#fff var(--tw-gradient-from-position);--tw-gradient-to:rgb(255 255 255 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.via-apex-gold{--tw-gradient-to:rgb(255 184 0 / 0)  var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), #FFB800 var(--tw-gradient-via-position), var(--tw-gradient-to)}.via-rose-600{--tw-gradient-to:rgb(225 29 72 / 0)  var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), #e11d48 var(--tw-gradient-via-position), var(--tw-gradient-to)}.via-slate-200{--tw-gradient-to:rgb(226 232 240 / 0)  var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), #e2e8f0 var(--tw-gradient-via-position), var(--tw-gradient-to)}.to-apex-cyan{--tw-gradient-to:#00F0FF var(--tw-gradient-to-position)}.to-apex-red{--tw-gradient-to:#FF2A38 var(--tw-gradient-to-position)}.to-rose-700{--tw-gradient-to:#be123c var(--tw-gradient-to-position)}.bg-clip-text{-webkit-background-clip:text;background-clip:text}.fill-current{fill:currentColor}.p-0\.5{padding:0.125rem}.p-1{padding:0.25rem}.p-1\.5{padding:0.375rem}.p-2{padding:0.5rem}.p-3{padding:0.75rem}.p-3\.5{padding:0.875rem}.p-4{padding:1rem}.p-6{padding:1.5rem}.p-8{padding:2rem}.p-\[2px\]{padding:2px}.px-2\.5{padding-left:0.625rem;padding-right:0.625rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.px-8{padding-left:2rem;padding-right:2rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-1\.5{padding-top:0.375rem;padding-bottom:0.375rem}.py-12{padding-top:3rem;padding-bottom:3rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-2\.5{padding-top:0.625rem;padding-bottom:0.625rem}.py-20{padding-top:5rem;padding-bottom:5rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-3\.5{padding-top:0.875rem;padding-bottom:0.875rem}.py-4{padding-top:1rem;padding-bottom:1rem}.py-5{padding-top:1.25rem;padding-bottom:1.25rem}.pb-28{padding-bottom:7rem}.pb-3{padding-bottom:0.75rem}.pt-2{padding-top:0.5rem}.pt-24{padding-top:6rem}.pt-4{padding-top:1rem}.pt-6{padding-top:1.5rem}.text-left{text-align:left}.text-center{text-align:center}.font-cinzel{font-family:Cinzel, serif}.font-mono{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}.font-orbitron{font-family:Orbitron, sans-serif}.font-rajdhani{font-family:Rajdhani, sans-serif}.font-sans{font-family:Inter, sans-serif}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-5xl{font-size:3rem;line-height:1}.text-\[10px\]{font-size:10px}.text-\[11px\]{font-size:11px}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-black{font-weight:900}.font-bold{font-weight:700}.font-extrabold{font-weight:800}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.leading-relaxed{line-height:1.625}.leading-tight{line-height:1.25}.tracking-\[0\.25em\]{letter-spacing:0.25em}.tracking-tight{letter-spacing:-0.025em}.tracking-wide{letter-spacing:0.025em}.tracking-wider{letter-spacing:0.05em}.tracking-widest{letter-spacing:0.1em}.text-slate-100{--tw-text-opacity:1;color:rgb(241 245 249 / var(--tw-text-opacity, 1))}.text-apex-cyan{--tw-text-opacity:1;color:rgb(0 240 255 / var(--tw-text-opacity, 1))}.text-apex-gold{--tw-text-opacity:1;color:rgb(255 184 0 / var(--tw-text-opacity, 1))}.text-apex-red{--tw-text-opacity:1;color:rgb(255 42 56 / var(--tw-text-opacity, 1))}.text-emerald-400{--tw-text-opacity:1;color:rgb(52 211 153 / var(--tw-text-opacity, 1))}.text-slate-200{--tw-text-opacity:1;color:rgb(226 232 240 / var(--tw-text-opacity, 1))}.text-slate-300{--tw-text-opacity:1;color:rgb(203 213 225 / var(--tw-text-opacity, 1))}.text-slate-400{--tw-text-opacity:1;color:rgb(148 163 184 / var(--tw-text-opacity, 1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139 / var(--tw-text-opacity, 1))}.text-transparent{color:transparent}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.accent-apex-red{accent-color:#FF2A38}.opacity-0{opacity:0}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgb(0 0 0 / 0.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-md{--tw-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-xl{--tw-shadow:0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-apex-red\/10{--tw-shadow-color:rgb(255 42 56 / 0.1);--tw-shadow:var(--tw-shadow-colored)}.shadow-apex-red\/30{--tw-shadow-color:rgb(255 42 56 / 0.3);--tw-shadow:var(--tw-shadow-colored)}.shadow-apex-red\/40{--tw-shadow-color:rgb(255 42 56 / 0.4);--tw-shadow:var(--tw-shadow-colored)}.backdrop-blur-md{--tw-backdrop-blur:blur(12px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.backdrop-blur-sm{--tw-backdrop-blur:blur(4px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-colors{transition-property:color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-300{transition-duration:300ms}.duration-75{transition-duration:75ms}.selection\:bg-apex-red *::selection{--tw-bg-opacity:1;background-color:rgb(255 42 56 / var(--tw-bg-opacity, 1))}.selection\:text-white *::selection{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.selection\:bg-apex-red::selection{--tw-bg-opacity:1;background-color:rgb(255 42 56 / var(--tw-bg-opacity, 1))}.selection\:text-white::selection{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.hover\:scale-105:hover{--tw-scale-x:1.05;--tw-scale-y:1.05;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.hover\:border-apex-cyan:hover{--tw-border-opacity:1;border-color:rgb(0 240 255 / var(--tw-border-opacity, 1))}.hover\:border-apex-gold:hover{--tw-border-opacity:1;border-color:rgb(255 184 0 / var(--tw-border-opacity, 1))}.hover\:border-apex-red:hover{--tw-border-opacity:1;border-color:rgb(255 42 56 / var(--tw-border-opacity, 1))}.hover\:border-slate-700:hover{--tw-border-opacity:1;border-color:rgb(51 65 85 / var(--tw-border-opacity, 1))}.hover\:bg-rose-600:hover{--tw-bg-opacity:1;background-color:rgb(225 29 72 / var(--tw-bg-opacity, 1))}.hover\:from-rose-600:hover{--tw-gradient-from:#e11d48 var(--tw-gradient-from-position);--tw-gradient-to:rgb(225 29 72 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.hover\:to-red-600:hover{--tw-gradient-to:#dc2626 var(--tw-gradient-to-position)}.hover\:text-apex-red:hover{--tw-text-opacity:1;color:rgb(255 42 56 / var(--tw-text-opacity, 1))}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.hover\:brightness-110:hover{--tw-brightness:brightness(1.1);filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.focus\:border-apex-red:focus{--tw-border-opacity:1;border-color:rgb(255 42 56 / var(--tw-border-opacity, 1))}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.active\:scale-95:active{--tw-scale-x:.95;--tw-scale-y:.95;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.group:hover .group-hover\:bg-transparent{background-color:transparent}.group:hover .group-hover\:text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}@media (min-width: 640px){.sm\:flex{display:flex}.sm\:aspect-\[21\/9\]{aspect-ratio:21/9}.sm\:w-auto{width:auto}.sm\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.sm\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.sm\:grid-cols-4{grid-template-columns:repeat(4, minmax(0, 1fr))}.sm\:flex-row{flex-direction:row}.sm\:p-10{padding:2.5rem}.sm\:p-8{padding:2rem}.sm\:px-6{padding-left:1.5rem;padding-right:1.5rem}.sm\:text-left{text-align:left}.sm\:text-4xl{font-size:2.25rem;line-height:2.5rem}.sm\:text-5xl{font-size:3rem;line-height:1}.sm\:text-6xl{font-size:3.75rem;line-height:1}.sm\:text-base{font-size:1rem;line-height:1.5rem}.sm\:text-lg{font-size:1.125rem;line-height:1.75rem}}@media (min-width: 768px){.md\:col-span-2{grid-column:span 2 / span 2}.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.md\:grid-cols-4{grid-template-columns:repeat(4, minmax(0, 1fr))}.md\:flex-row{flex-direction:row}.md\:items-end{align-items:flex-end}.md\:text-7xl{font-size:4.5rem;line-height:1}}@media (min-width: 1024px){.lg\:col-span-4{grid-column:span 4 / span 4}.lg\:col-span-5{grid-column:span 5 / span 5}.lg\:col-span-7{grid-column:span 7 / span 7}.lg\:col-span-8{grid-column:span 8 / span 8}.lg\:flex{display:flex}.lg\:hidden{display:none}.lg\:grid-cols-12{grid-template-columns:repeat(12, minmax(0, 1fr))}.lg\:grid-cols-4{grid-template-columns:repeat(4, minmax(0, 1fr))}.lg\:px-8{padding-left:2rem;padding-right:2rem}}</style></head>
+<body class="carbon-bg min-h-screen text-slate-100 selection:bg-apex-red selection:text-white">
+
+    <!-- Top Sticky Copy Code Bar -->
+    <div class="sticky top-0 z-50 bg-apex-dark/95 backdrop-blur-md border-b border-apex-border py-2 px-4 shadow-xl">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <span class="inline-block w-2.5 h-2.5 rounded-full bg-apex-red animate-ping"></span>
+                <span class="font-orbitron font-bold text-xs uppercase tracking-widest text-slate-300">Apex Dyno Application Source</span>
+            </div>
+            <button id="top-copy-btn" onclick="copySourceCode()" class="flex items-center gap-2 bg-gradient-to-r from-apex-red to-rose-700 hover:from-rose-600 hover:to-red-600 text-white px-4 py-1.5 rounded-lg font-orbitron font-bold uppercase tracking-wider text-xs shadow-lg shadow-apex-red/40 border border-white/20 transition-all hover:scale-105 active:scale-95">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="copy" aria-hidden="true" class="lucide lucide-copy w-3.5 h-3.5"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>
+                <span id="top-copy-btn-text">Copy HTML Code</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="sticky top-10 z-40 glass-card border-b border-apex-border bg-apex-dark/90">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-apex-red via-rose-600 to-apex-cyan p-[2px] shadow-lg shadow-apex-red/30">
+                    <div class="w-full h-full bg-apex-dark rounded-[10px] flex items-center justify-center group-hover:bg-transparent transition-colors duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="gauge" aria-hidden="true" class="lucide lucide-gauge w-6 h-6 text-apex-red group-hover:text-white transition-colors duration-300"><path d="m12 14 4-4"></path><path d="M3.34 19a10 10 0 1 1 17.32 0"></path></svg>
+                    </div>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-orbitron font-black text-2xl tracking-wider text-white flex items-center gap-1">
+                        APEX <span class="text-apex-red text-glow-red">DYNO</span>
+                    </span>
+                    <span class="font-rajdhani text-[10px] tracking-[0.25em] text-slate-400 uppercase font-bold">Chassis Engineering &amp; Calibration</span>
+                </div>
+            </a>
+
+            <nav class="hidden lg:flex items-center space-x-8 font-rajdhani font-bold text-sm tracking-widest text-slate-300">
+                <a href="#services" class="hover:text-apex-red transition-colors">SERVICES</a>
+                <a href="#simulator" class="hover:text-apex-red transition-colors flex items-center gap-1.5">
+                    <span class="inline-block w-1.5 h-1.5 rounded-full bg-apex-red animate-pulse"></span>
+                    DYNO SIMULATOR
+                </a>
+                <a href="#calculator" class="hover:text-apex-red transition-colors">POWER CALCULATOR</a>
+                <a href="#leaderboard" class="hover:text-apex-red transition-colors">HALL OF FAME</a>
+                <a href="#booking" class="hover:text-apex-red transition-colors">BOOK SESSION</a>
+            </nav>
+
+            <div class="hidden sm:flex items-center gap-4">
+                <a href="#booking" class="px-5 py-2.5 rounded-xl bg-apex-red hover:bg-rose-600 text-white font-orbitron font-bold text-xs uppercase tracking-wider transition-all shadow-lg shadow-apex-red/30 flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="calendar" aria-hidden="true" class="lucide lucide-calendar w-4 h-4"><path d="M8 2v3"></path><path d="M16 2v3"></path><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M3 9h18"></path></svg>
+                    Book Dyno Pass
+                </a>
+            </div>
+
+            <button id="mobile-menu-toggle" class="lg:hidden p-2 text-slate-400 hover:text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="menu" aria-hidden="true" class="lucide lucide-menu w-7 h-7"><path d="M4 5h16"></path><path d="M4 12h16"></path><path d="M4 19h16"></path></svg>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="hidden lg:hidden glass-card border-b border-apex-border px-6 py-5 space-y-4 font-rajdhani font-bold text-lg">
+            <a href="#services" class="block hover:text-apex-red transition-colors">SERVICES</a>
+            <a href="#simulator" class="block hover:text-apex-red transition-colors">DYNO SIMULATOR</a>
+            <a href="#calculator" class="block hover:text-apex-red transition-colors">POWER CALCULATOR</a>
+            <a href="#leaderboard" class="block hover:text-apex-red transition-colors">HALL OF FAME</a>
+            <a href="#booking" class="block text-apex-red transition-colors">BOOK SESSION →</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative pt-24 pb-28 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-card border-apex-red/40 text-apex-red text-xs font-orbitron tracking-widest uppercase mb-6 shadow-xl shadow-apex-red/10">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="flame" aria-hidden="true" class="lucide lucide-flame w-4 h-4"><path d="M12 3q1 4 4 6.5t3 5.5a1 1 0 0 1-14 0 5 5 0 0 1 1-3 1 1 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4"></path></svg>
+                AWD &amp; RWD Linked Mainline Dynamometer Facility
+            </div>
+
+            <h1 class="font-cinzel text-4xl sm:text-6xl md:text-7xl font-black text-white uppercase tracking-tight mb-6 leading-tight">
+                Precision Tuning.<br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-apex-red text-glow-red">Unmatched Power.</span>
+            </h1>
+
+            <p class="max-w-3xl mx-auto text-slate-300 text-base sm:text-lg mb-10 leading-relaxed font-sans">
+                Next-generation chassis dynamometer testing, wideband knock telemetry, and custom standalone ECU calibrations engineered for track performance and extreme thermal stability.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+                <a href="#booking" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-apex-red text-white font-orbitron font-bold text-sm uppercase tracking-wider hover:bg-rose-600 transition-all shadow-xl shadow-apex-red/40 flex items-center justify-center gap-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="calendar-check" aria-hidden="true" class="lucide lucide-calendar-check w-5 h-5"><path d="M8 2v3"></path><path d="M16 2v3"></path><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M3 9h18"></path><path d="m9 15 2 2 4-4"></path></svg>
+                    Schedule Session
+                </a>
+                <a href="#simulator" class="w-full sm:w-auto px-8 py-4 rounded-xl glass-card border border-slate-700 hover:border-apex-red text-white font-orbitron font-bold text-sm uppercase tracking-wider transition-all flex items-center justify-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="activity" aria-hidden="true" class="lucide lucide-activity w-5 h-5 text-apex-cyan"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"></path></svg>
+                    Live Telemetry Visualizer
+                </a>
+            </div>
+
+            <!-- Dynamic Counter Metrics -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                <div class="glass-card p-6 rounded-2xl border-b-2 border-b-apex-red">
+                    <span id="counter-runs" class="block font-orbitron font-black text-3xl sm:text-4xl text-white mb-1">12,500+</span>
+                    <span class="font-rajdhani text-xs font-bold text-slate-400 uppercase tracking-widest">Dyno Passes Logged</span>
+                </div>
+                <div class="glass-card p-6 rounded-2xl border-b-2 border-b-apex-red">
+                    <span id="counter-hp" class="block font-orbitron font-black text-3xl sm:text-4xl text-apex-red text-glow-red mb-1">1,850 WHP</span>
+                    <span class="font-rajdhani text-xs font-bold text-slate-400 uppercase tracking-widest">Peak Shop Output</span>
+                </div>
+                <div class="glass-card p-6 rounded-2xl border-b-2 border-b-apex-red">
+                    <span id="counter-reliability" class="block font-orbitron font-black text-3xl sm:text-4xl text-apex-cyan text-glow-cyan mb-1">99.8%</span>
+                    <span class="font-rajdhani text-xs font-bold text-slate-400 uppercase tracking-widest">Calibration Reliability</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Interactive Live Dyno Simulator -->
+    <section id="simulator" class="py-20 relative bg-apex-card/60 border-y border-apex-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center mb-12">
+                <div class="inline-flex items-center gap-2 text-apex-red font-orbitron text-xs font-bold uppercase tracking-widest mb-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="cpu" aria-hidden="true" class="lucide lucide-cpu w-4 h-4"><path d="M12 20v2"></path><path d="M12 2v2"></path><path d="M17 20v2"></path><path d="M17 2v2"></path><path d="M2 12h2"></path><path d="M2 17h2"></path><path d="M2 7h2"></path><path d="M20 12h2"></path><path d="M20 17h2"></path><path d="M20 7h2"></path><path d="M7 20v2"></path><path d="M7 2v2"></path><rect x="4" y="4" width="16" height="16" rx="2"></rect><rect x="8" y="8" width="8" height="8" rx="1"></rect></svg> Telemetry Engine Visualizer
+                </div>
+                <h2 class="font-cinzel text-3xl sm:text-5xl font-black text-white uppercase tracking-tight">
+                    Interactive Dyno Simulator
+                </h2>
+                <p class="font-sans text-slate-400 max-w-2xl mx-auto mt-3 text-sm sm:text-base">
+                    Simulate real dyno passes across vehicle platforms. Features HTML5 Canvas curve graphing, real-time tachometer sweep, particle sparks, and Web Audio API synthesized rev sound.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                
+                <!-- Controls Column -->
+                <div class="lg:col-span-4 glass-card p-6 rounded-2xl space-y-6 border border-slate-800">
+                    <h3 class="font-orbitron font-bold text-lg text-white flex items-center justify-between border-b border-slate-800 pb-3">
+                        <span>Vehicle Platform</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="sliders" aria-hidden="true" class="lucide lucide-sliders w-5 h-5 text-apex-red"><path d="M10 8h4"></path><path d="M12 21v-9"></path><path d="M12 8V3"></path><path d="M17 16h4"></path><path d="M19 12V3"></path><path d="M19 21v-5"></path><path d="M3 14h4"></path><path d="M5 10V3"></path><path d="M5 21v-7"></path></svg>
+                    </h3>
+
+                    <div>
+                        <label class="block font-rajdhani font-bold text-xs uppercase tracking-widest text-slate-400 mb-2">Platform Selection</label>
+                        <select id="sim-vehicle" class="w-full bg-apex-dark border border-slate-700 rounded-xl p-3 text-sm font-semibold text-white focus:outline-none focus:border-apex-red">
+                            <option value="v8-gt">4.0L V8 Twin-Turbo GT (Euro Supercar)</option>
+                            <option value="jdm-i6">3.0L Inline-6 Turbo (JDM Legend)</option>
+                            <option value="v10-na">5.2L V10 Supercharged</option>
+                            <option value="ev-quad">Quad-Motor Electric Hypercar</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block font-rajdhani font-bold text-xs uppercase tracking-widest text-slate-400 mb-2">Calibration Stage</label>
+                        <div class="grid grid-cols-2 gap-2" id="sim-stage-buttons">
+                            <button onclick="setSimStage(0)" class="stage-btn px-3 py-2.5 rounded-lg text-xs font-orbitron font-bold border border-apex-red bg-apex-red text-white" data-stage="0">Stock Factory</button>
+                            <button onclick="setSimStage(1)" class="stage-btn px-3 py-2.5 rounded-lg text-xs font-orbitron font-bold border border-slate-700 bg-apex-dark text-slate-300" data-stage="1">Stage 1 ECU</button>
+                            <button onclick="setSimStage(2)" class="stage-btn px-3 py-2.5 rounded-lg text-xs font-orbitron font-bold border border-slate-700 bg-apex-dark text-slate-300" data-stage="2">Stage 2 Bolt-On</button>
+                            <button onclick="setSimStage(3)" class="stage-btn px-3 py-2.5 rounded-lg text-xs font-orbitron font-bold border border-slate-700 bg-apex-dark text-slate-300" data-stage="3">Stage 3 E85+Turbos</button>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between p-3.5 rounded-xl bg-apex-dark border border-slate-800">
+                        <div class="flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="volume-2" aria-hidden="true" class="lucide lucide-volume-2 w-4 h-4 text-apex-red"><path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z"></path><path d="M16 9a5 5 0 0 1 0 6"></path><path d="M19.364 18.364a9 9 0 0 0 0-12.728"></path></svg>
+                            <span class="font-rajdhani font-bold text-xs uppercase tracking-wider text-slate-300">Web Audio Rev Synth</span>
+                        </div>
+                        <input type="checkbox" id="sim-sound-toggle" checked="" class="w-4 h-4 accent-apex-red rounded cursor-pointer">
+                    </div>
+
+                    <button id="run-dyno-btn" onclick="startDynoPass()" class="w-full py-4 rounded-xl bg-gradient-to-r from-apex-red to-rose-700 text-white font-orbitron font-black text-sm uppercase tracking-widest shadow-xl shadow-apex-red/40 hover:brightness-110 active:scale-95 transition-all flex items-center justify-center gap-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="play" aria-hidden="true" class="lucide lucide-play w-5 h-5 fill-current"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"></path></svg>
+                        RUN DYNO PASS
+                    </button>
+
+                    <div class="grid grid-cols-2 gap-3 pt-2">
+                        <div class="bg-apex-dark p-3 rounded-xl border border-slate-800 text-center">
+                            <span class="block text-[10px] font-rajdhani font-bold uppercase tracking-widest text-slate-500">Peak Power</span>
+                            <span id="readout-hp" class="font-orbitron text-xl font-bold text-apex-red">580 HP</span>
+                        </div>
+                        <div class="bg-apex-dark p-3 rounded-lg border border-slate-800 text-center">
+                            <span class="block text-[10px] font-rajdhani font-bold uppercase tracking-widest text-slate-500">Peak Torque</span>
+                            <span id="readout-tq" class="font-orbitron text-xl font-bold text-apex-gold">550 TQ</span>
+                        </div>
+                        <div class="bg-apex-dark p-3 rounded-lg border border-slate-800 text-center">
+                            <span class="block text-[10px] font-rajdhani font-bold uppercase tracking-widest text-slate-500">Boost Pressure</span>
+                            <span id="readout-boost" class="font-orbitron text-base font-bold text-apex-cyan">14 PSI</span>
+                        </div>
+                        <div class="bg-apex-dark p-3 rounded-lg border border-slate-800 text-center">
+                            <span class="block text-[10px] font-rajdhani font-bold uppercase tracking-widest text-slate-500">Target AFR</span>
+                            <span id="readout-afr" class="font-orbitron text-base font-bold text-emerald-400">11.8:1</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Canvas Visualizer Column -->
+                <div class="lg:col-span-8 glass-card p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-4">
+                            <span class="flex items-center gap-1.5 text-xs font-orbitron text-apex-red">
+                                <span class="w-3 h-0.5 bg-apex-red rounded-full"></span> HORSEPOWER (WHP)
+                            </span>
+                            <span class="flex items-center gap-1.5 text-xs font-orbitron text-apex-gold">
+                                <span class="w-3 h-0.5 bg-apex-gold rounded-full"></span> TORQUE (LB-FT)
+                            </span>
+                        </div>
+                        <div id="sim-status" class="text-xs font-mono text-slate-400 uppercase tracking-widest bg-apex-dark px-3 py-1 rounded border border-slate-800">
+                            STATUS: READY
+                        </div>
+                    </div>
+
+                    <div class="relative w-full aspect-[16/9] sm:aspect-[21/9] bg-apex-dark rounded-xl border border-slate-800 overflow-hidden">
+                        <canvas id="dynoCanvas" class="w-full h-full block"></canvas>
+                    </div>
+
+                    <div class="mt-6 pt-4 border-t border-slate-800/80 grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
+                        <div>
+                            <span class="block text-[11px] font-rajdhani font-bold uppercase text-slate-400 tracking-wider">Engine Tachometer</span>
+                            <div class="flex items-baseline gap-2">
+                                <span id="live-rpm-number" class="font-orbitron font-extrabold text-3xl text-white">0</span>
+                                <span class="text-xs font-mono text-slate-500">RPM</span>
+                            </div>
+                        </div>
+
+                        <div class="md:col-span-2 space-y-1">
+                            <div class="flex justify-between text-[10px] font-mono text-slate-500">
+                                <span>1000</span>
+                                <span>3000</span>
+                                <span>5000</span>
+                                <span>7000</span>
+                                <span class="text-apex-red">8500 REDLINE</span>
+                            </div>
+                            <div class="w-full h-3 bg-apex-dark rounded-full overflow-hidden border border-slate-800 p-0.5">
+                                <div id="rpm-progress-bar" class="h-full bg-gradient-to-r from-apex-cyan via-apex-gold to-apex-red rounded-full transition-all duration-75" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Power Gain Calculator Section -->
+    <section id="calculator" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center mb-12">
+                <div class="inline-flex items-center gap-2 text-apex-gold font-orbitron text-xs font-bold uppercase tracking-widest mb-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="calculator" aria-hidden="true" class="lucide lucide-calculator w-4 h-4"><rect width="16" height="20" x="4" y="2" rx="2"></rect><line x1="8" x2="16" y1="6" y2="6"></line><line x1="16" x2="16" y1="14" y2="18"></line><path d="M16 10h.01"></path><path d="M12 10h.01"></path><path d="M8 10h.01"></path><path d="M12 14h.01"></path><path d="M8 14h.01"></path><path d="M12 18h.01"></path><path d="M8 18h.01"></path></svg> Calibration Modeling
+                </div>
+                <h2 class="font-cinzel text-3xl sm:text-5xl font-black text-white uppercase tracking-tight">
+                    Power Gain Estimator
+                </h2>
+                <p class="font-sans text-slate-400 max-w-2xl mx-auto mt-3 text-sm sm:text-base">
+                    Estimate expected wheel horsepower gains and acceleration improvements based on baseline specs, fuel grade, and hardware mods.
+                </p>
+            </div>
+
+            <div class="glass-card p-6 sm:p-10 rounded-2xl border border-slate-800 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                
+                <div class="lg:col-span-7 space-y-6">
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <label class="font-rajdhani font-bold text-sm uppercase tracking-wider text-slate-300">Baseline Power Output</label>
+                            <span class="font-orbitron font-bold text-lg text-apex-red"><span id="calc-hp-val">350</span> HP</span>
+                        </div>
+                        <input type="range" id="calc-hp-slider" min="150" max="1000" step="10" value="350" class="w-full">
+                    </div>
+
+                    <div>
+                        <label class="block font-rajdhani font-bold text-sm uppercase tracking-wider text-slate-300 mb-2">Fuel Grade Calibration</label>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                            <button onclick="setCalcFuel('91', 1.0)" class="fuel-btn px-3 py-2.5 rounded-lg text-xs font-orbitron font-bold border border-apex-red bg-apex-red text-white" data-fuel="91">91 Octane</button>
+                            <button onclick="setCalcFuel('93', 1.06)" class="fuel-btn px-3 py-2.5 rounded-lg text-xs font-orbitron font-bold border border-slate-700 bg-apex-dark text-slate-300" data-fuel="93">93 Octane</button>
+                            <button onclick="setCalcFuel('E85', 1.20)" class="fuel-btn px-3 py-2.5 rounded-lg text-xs font-orbitron font-bold border border-slate-700 bg-apex-dark text-slate-300" data-fuel="E85">E85 Flex Fuel</button>
+                            <button onclick="setCalcFuel('Race', 1.28)" class="fuel-btn px-3 py-2.5 rounded-lg text-xs font-orbitron font-bold border border-slate-700 bg-apex-dark text-slate-300" data-fuel="Race">MS109 Race Gas</button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block font-rajdhani font-bold text-sm uppercase tracking-wider text-slate-300 mb-2">Hardware Bolt-On Upgrades</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <label class="flex items-center gap-3 p-3 rounded-xl bg-apex-dark border border-slate-800 cursor-pointer hover:border-slate-700">
+                                <input type="checkbox" id="mod-intake" onchange="calculateGains()" class="accent-apex-red w-4 h-4 rounded">
+                                <span class="text-xs font-semibold text-slate-300">Cold Air Intake System (+5%)</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-3 rounded-xl bg-apex-dark border border-slate-800 cursor-pointer hover:border-slate-700">
+                                <input type="checkbox" id="mod-exhaust" onchange="calculateGains()" class="accent-apex-red w-4 h-4 rounded">
+                                <span class="text-xs font-semibold text-slate-300">Downpipe &amp; Catless Exhaust (+8%)</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-3 rounded-xl bg-apex-dark border border-slate-800 cursor-pointer hover:border-slate-700">
+                                <input type="checkbox" id="mod-intercooler" onchange="calculateGains()" class="accent-apex-red w-4 h-4 rounded">
+                                <span class="text-xs font-semibold text-slate-300">Upgraded Front Intercooler (+6%)</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-3 rounded-xl bg-apex-dark border border-slate-800 cursor-pointer hover:border-slate-700">
+                                <input type="checkbox" id="mod-meth" onchange="calculateGains()" class="accent-apex-red w-4 h-4 rounded">
+                                <span class="text-xs font-semibold text-slate-300">Methanol Water Injection (+12%)</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 bg-apex-dark p-6 sm:p-8 rounded-2xl border border-apex-red/30 space-y-6 text-center">
+                    <span class="inline-block px-3 py-1 rounded-full bg-apex-red/20 text-apex-red font-orbitron text-[10px] uppercase tracking-widest font-bold">
+                        Calculated Estimate
+                    </span>
+
+                    <div class="space-y-2">
+                        <span class="block text-xs font-rajdhani font-bold uppercase text-slate-400">Post-Tuning Output</span>
+                        <div id="calc-result-hp" class="font-orbitron font-black text-5xl sm:text-6xl text-white text-glow-red">392 HP</div>
+                        <div id="calc-net-gain" class="font-rajdhani font-bold text-emerald-400 text-sm tracking-wide">+42 HP (+12% Gain)</div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-3 pt-4 border-t border-slate-800">
+                        <div class="text-left">
+                            <span class="block text-[10px] font-rajdhani uppercase font-bold text-slate-500">Estimated Torque</span>
+                            <span id="calc-result-tq" class="font-orbitron font-bold text-lg text-apex-gold">361 LB-FT</span>
+                        </div>
+                        <div class="text-left">
+                            <span class="block text-[10px] font-rajdhani uppercase font-bold text-slate-500">0-60 MPH Shift</span>
+                            <span id="calc-result-speed" class="font-orbitron font-bold text-lg text-apex-cyan">-0.15 sec</span>
+                        </div>
+                    </div>
+
+                    <a href="#booking" class="block w-full py-3.5 rounded-xl bg-apex-red text-white font-orbitron font-bold text-xs uppercase tracking-widest hover:bg-rose-600 transition-colors shadow-lg shadow-apex-red/30">
+                        Reserve Calibration Appointment
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-apex-card/60 border-y border-apex-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center gap-2 text-apex-red font-orbitron text-xs font-bold uppercase tracking-widest mb-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="wrench" aria-hidden="true" class="lucide lucide-wrench w-4 h-4"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z"></path></svg> Precision Engineering Packages
+                </div>
+                <h2 class="font-cinzel text-3xl sm:text-5xl font-black text-white uppercase tracking-tight">
+                    Dyno Testing &amp; Tuning
+                </h2>
+                <p class="font-sans text-slate-400 max-w-2xl mx-auto mt-3 text-sm sm:text-base">
+                    From baseline health check pulls to standalone race calibrations, our facility provides uncompromised engineering.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Package 1 -->
+                <div class="glass-card glass-card-hover p-6 rounded-2xl flex flex-col justify-between border border-slate-800">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="p-3 rounded-xl bg-apex-red/10 border border-apex-red/30 text-apex-red">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="line-chart" aria-hidden="true" class="lucide lucide-line-chart w-6 h-6"><path d="M3 3v16a2 2 0 0 0 2 2h16"></path><path d="m19 9-5 5-4-4-3 3"></path></svg>
+                            </span>
+                            <span class="font-orbitron font-black text-2xl text-white">$199</span>
+                        </div>
+                        <h3 class="font-orbitron font-bold text-lg text-white mb-2">Baseline Dyno Sweeps</h3>
+                        <p class="font-sans text-slate-400 text-xs leading-relaxed mb-6">
+                            Accurate wheel horsepower, torque, air/fuel ratio, and boost logging to benchmark current vehicle health.
+                        </p>
+                    </div>
+                    <button onclick="openPackageModal('Baseline Dyno Sweeps', '$199', 'Includes 3 successive baseline dyno pulls, full wideband AFR logging, graph overlays, and official printed/PDF dyno sheets.')" class="w-full py-3 rounded-xl bg-apex-dark border border-slate-700 hover:border-apex-red text-center font-orbitron text-xs font-bold uppercase tracking-wider text-slate-200 transition-colors">
+                        View Package Details
+                    </button>
+                </div>
+
+                <!-- Package 2 -->
+                <div class="glass-card glass-card-hover p-6 rounded-2xl flex flex-col justify-between border-2 border-apex-red relative shadow-2xl shadow-apex-red/10">
+                    <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-apex-red text-white font-orbitron text-[10px] font-bold uppercase tracking-widest shadow-md">
+                        Most Popular
+                    </div>
+                    <div>
+                        <div class="flex items-center justify-between mb-4 mt-2">
+                            <span class="p-3 rounded-xl bg-apex-red text-white shadow-lg shadow-apex-red/40">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="cpu" aria-hidden="true" class="lucide lucide-cpu w-6 h-6"><path d="M12 20v2"></path><path d="M12 2v2"></path><path d="M17 20v2"></path><path d="M17 2v2"></path><path d="M2 12h2"></path><path d="M2 17h2"></path><path d="M2 7h2"></path><path d="M20 12h2"></path><path d="M20 17h2"></path><path d="M20 7h2"></path><path d="M7 20v2"></path><path d="M7 2v2"></path><rect x="4" y="4" width="16" height="16" rx="2"></rect><rect x="8" y="8" width="8" height="8" rx="1"></rect></svg>
+                            </span>
+                            <span class="font-orbitron font-black text-2xl text-white text-glow-red">$899</span>
+                        </div>
+                        <h3 class="font-orbitron font-bold text-lg text-white mb-2">Custom ECU Calibration</h3>
+                        <p class="font-sans text-slate-400 text-xs leading-relaxed mb-6">
+                            Tailored map optimization for ignition timing, fueling, and boost using OEM reflash or standalone suites.
+                        </p>
+                    </div>
+                    <button onclick="openPackageModal('Custom ECU Calibration', '$899', 'Includes up to 3 hours dyno cell time, individual cylinder knock telemetry, flex-fuel E85 mapping, launch control, and flat-foot shift tuning.')" class="w-full py-3 rounded-xl bg-apex-red hover:bg-rose-600 text-center font-orbitron text-xs font-bold uppercase tracking-widest text-white transition-colors shadow-lg shadow-apex-red/30">
+                        View Package Details
+                    </button>
+                </div>
+
+                <!-- Package 3 -->
+                <div class="glass-card glass-card-hover p-6 rounded-2xl flex flex-col justify-between border border-slate-800">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="p-3 rounded-xl bg-apex-gold/10 border border-apex-gold/30 text-apex-gold">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="trophy" aria-hidden="true" class="lucide lucide-trophy w-6 h-6"><path d="M10 14.66V17a1 1 0 0 1-1 1 2 2 0 0 0-2 2v2"></path><path d="M14 14.66V17a1 1 0 0 0 1 1 2 2 0 0 1 2 2v2"></path><path d="M17.916 10H19.5A2.5 2.5 0 0 0 22 7.5V5a1 1 0 0 0-1-1h-3"></path><path d="M4 22h16"></path><path d="M6 9a6 6 0 0 0 12 0V3a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1z"></path><path d="M6.084 10H4.5A2.5 2.5 0 0 1 2 7.5V5a1 1 0 0 1 1-1h3"></path></svg>
+                            </span>
+                            <span class="font-orbitron font-black text-2xl text-white">$1,850</span>
+                        </div>
+                        <h3 class="font-orbitron font-bold text-lg text-white mb-2">Track &amp; Race Prep</h3>
+                        <p class="font-sans text-slate-400 text-xs leading-relaxed mb-6">
+                            Full day dyno cell rental with master tuner dedicated to high-horsepower motorsport builds &amp; thermal mapping.
+                        </p>
+                    </div>
+                    <button onclick="openPackageModal('Track &amp; Race Prep', '$1,850', 'Full day dyno cell access with dedicated master calibrator, FLIR thermal camera monitoring, race gas tuning, and track-ready map switching.')" class="w-full py-3 rounded-xl bg-apex-dark border border-slate-700 hover:border-apex-gold text-center font-orbitron text-xs font-bold uppercase tracking-wider text-slate-200 transition-colors">
+                        View Package Details
+                    </button>
+                </div>
+
+                <!-- Package 4 -->
+                <div class="glass-card glass-card-hover p-6 rounded-2xl flex flex-col justify-between border border-slate-800">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="p-3 rounded-xl bg-apex-cyan/10 border border-apex-cyan/30 text-apex-cyan">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="shield-check" aria-hidden="true" class="lucide lucide-shield-check w-6 h-6"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg>
+                            </span>
+                            <span class="font-orbitron font-black text-2xl text-white">$349</span>
+                        </div>
+                        <h3 class="font-orbitron font-bold text-lg text-white mb-2">Fleet &amp; Diagnostics</h3>
+                        <p class="font-sans text-slate-400 text-xs leading-relaxed mb-6">
+                            Comprehensive drivetrain diagnostic logging, smoke testing, and knock sensor signal verification.
+                        </p>
+                    </div>
+                    <button onclick="openPackageModal('Fleet &amp; Diagnostics', '$349', 'Deep diagnostic telemetry check including boost leak smoke tests, compression tests, spark plug analysis, and driveability logging.')" class="w-full py-3 rounded-xl bg-apex-dark border border-slate-700 hover:border-apex-cyan text-center font-orbitron text-xs font-bold uppercase tracking-wider text-slate-200 transition-colors">
+                        View Package Details
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Leaderboard Section -->
+    <section id="leaderboard" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+                <div>
+                    <div class="inline-flex items-center gap-2 text-apex-gold font-orbitron text-xs font-bold uppercase tracking-widest mb-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="award" aria-hidden="true" class="lucide lucide-award w-4 h-4"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"></path><circle cx="12" cy="8" r="6"></circle></svg> Highest Wheel Power Records
+                    </div>
+                    <h2 class="font-cinzel text-3xl sm:text-5xl font-black text-white uppercase tracking-tight">
+                        Apex Hall of Fame
+                    </h2>
+                </div>
+
+                <div class="flex items-center gap-2 bg-apex-dark p-1.5 rounded-xl border border-slate-800 font-orbitron text-xs">
+                    <button onclick="filterLeaderboard('all')" class="filter-btn px-4 py-2 rounded-lg bg-apex-red text-white font-bold" data-filter="all">ALL</button>
+                    <button onclick="filterLeaderboard('awd')" class="filter-btn px-4 py-2 rounded-lg text-slate-400 hover:text-white font-bold" data-filter="awd">AWD</button>
+                    <button onclick="filterLeaderboard('rwd')" class="filter-btn px-4 py-2 rounded-lg text-slate-400 hover:text-white font-bold" data-filter="rwd">RWD</button>
+                    <button onclick="filterLeaderboard('fwd')" class="filter-btn px-4 py-2 rounded-lg text-slate-400 hover:text-white font-bold" data-filter="fwd">FWD</button>
+                </div>
+            </div>
+
+            <div id="leaderboard-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"><div class="glass-card glass-card-hover p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="px-2.5 py-1 rounded-full bg-apex-red/20 text-apex-red font-orbitron text-[10px] font-bold uppercase tracking-wider">RECORD AWD</span>
+                            <span class="font-mono text-xs text-slate-500 uppercase">AWD</span>
+                        </div>
+                        <h3 class="font-orbitron font-bold text-lg text-white mb-1">Nissan GT-R Nismo</h3>
+                        <p class="font-sans text-xs text-slate-400 mb-4">3.8L VR38DETT Twin-Turbo</p>
+                        <div class="grid grid-cols-2 gap-2 bg-apex-dark p-3 rounded-xl border border-slate-800 mb-4">
+                            <div>
+                                <span class="block text-[10px] font-rajdhani uppercase text-slate-500 font-bold">Wheel HP</span>
+                                <span class="font-orbitron font-extrabold text-xl text-white text-glow-red">1850 HP</span>
+                            </div>
+                            <div>
+                                <span class="block text-[10px] font-rajdhani uppercase text-slate-500 font-bold">Torque</span>
+                                <span class="font-orbitron font-bold text-base text-apex-gold">1320 TQ</span>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="glass-card glass-card-hover p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="px-2.5 py-1 rounded-full bg-apex-red/20 text-apex-red font-orbitron text-[10px] font-bold uppercase tracking-wider">TWIN TURBO</span>
+                            <span class="font-mono text-xs text-slate-500 uppercase">AWD</span>
+                        </div>
+                        <h3 class="font-orbitron font-bold text-lg text-white mb-1">Lamborghini Huracán</h3>
+                        <p class="font-sans text-xs text-slate-400 mb-4">5.2L V10 Twin-Turbo</p>
+                        <div class="grid grid-cols-2 gap-2 bg-apex-dark p-3 rounded-xl border border-slate-800 mb-4">
+                            <div>
+                                <span class="block text-[10px] font-rajdhani uppercase text-slate-500 font-bold">Wheel HP</span>
+                                <span class="font-orbitron font-extrabold text-xl text-white text-glow-red">1420 HP</span>
+                            </div>
+                            <div>
+                                <span class="block text-[10px] font-rajdhani uppercase text-slate-500 font-bold">Torque</span>
+                                <span class="font-orbitron font-bold text-base text-apex-gold">1050 TQ</span>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="glass-card glass-card-hover p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="px-2.5 py-1 rounded-full bg-apex-red/20 text-apex-red font-orbitron text-[10px] font-bold uppercase tracking-wider">LEGEND RWD</span>
+                            <span class="font-mono text-xs text-slate-500 uppercase">RWD</span>
+                        </div>
+                        <h3 class="font-orbitron font-bold text-lg text-white mb-1">Toyota Supra MKIV</h3>
+                        <p class="font-sans text-xs text-slate-400 mb-4">3.0L 2JZ-GTE Billet</p>
+                        <div class="grid grid-cols-2 gap-2 bg-apex-dark p-3 rounded-xl border border-slate-800 mb-4">
+                            <div>
+                                <span class="block text-[10px] font-rajdhani uppercase text-slate-500 font-bold">Wheel HP</span>
+                                <span class="font-orbitron font-extrabold text-xl text-white text-glow-red">1180 HP</span>
+                            </div>
+                            <div>
+                                <span class="block text-[10px] font-rajdhani uppercase text-slate-500 font-bold">Torque</span>
+                                <span class="font-orbitron font-bold text-base text-apex-gold">920 TQ</span>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="glass-card glass-card-hover p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="px-2.5 py-1 rounded-full bg-apex-red/20 text-apex-red font-orbitron text-[10px] font-bold uppercase tracking-wider">RECORD FWD</span>
+                            <span class="font-mono text-xs text-slate-500 uppercase">FWD</span>
+                        </div>
+                        <h3 class="font-orbitron font-bold text-lg text-white mb-1">Honda Civic Type R</h3>
+                        <p class="font-sans text-xs text-slate-400 mb-4">2.0L K20C1 Turbo</p>
+                        <div class="grid grid-cols-2 gap-2 bg-apex-dark p-3 rounded-xl border border-slate-800 mb-4">
+                            <div>
+                                <span class="block text-[10px] font-rajdhani uppercase text-slate-500 font-bold">Wheel HP</span>
+                                <span class="font-orbitron font-extrabold text-xl text-white text-glow-red">620 HP</span>
+                            </div>
+                            <div>
+                                <span class="block text-[10px] font-rajdhani uppercase text-slate-500 font-bold">Torque</span>
+                                <span class="font-orbitron font-bold text-base text-apex-gold">510 TQ</span>
+                            </div>
+                        </div>
+                    </div>
+                </div></div>
+
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section id="booking" class="py-20 relative bg-apex-card/60 border-t border-apex-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center mb-12">
+                <div class="inline-flex items-center gap-2 text-apex-red font-orbitron text-xs font-bold uppercase tracking-widest mb-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="calendar" aria-hidden="true" class="lucide lucide-calendar w-4 h-4"><path d="M8 2v3"></path><path d="M16 2v3"></path><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M3 9h18"></path></svg> Reserve Dyno Cell
+                </div>
+                <h2 class="font-cinzel text-3xl sm:text-5xl font-black text-white uppercase tracking-tight">
+                    Schedule Your Session
+                </h2>
+            </div>
+
+            <div class="glass-card p-6 sm:p-10 rounded-2xl border border-slate-800 grid grid-cols-1 lg:grid-cols-12 gap-8">
+                
+                <form id="booking-form" onsubmit="handleBookingSubmit(event)" class="lg:col-span-8 space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block font-rajdhani font-bold text-xs uppercase text-slate-400 mb-2">Full Name</label>
+                            <input type="text" id="book-name" required="" placeholder="Alex Mercer" class="w-full bg-apex-dark border border-slate-700 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-apex-red">
+                        </div>
+                        <div>
+                            <label class="block font-rajdhani font-bold text-xs uppercase text-slate-400 mb-2">Email Address</label>
+                            <input type="email" id="book-email" required="" placeholder="alex@performance.com" class="w-full bg-apex-dark border border-slate-700 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-apex-red">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block font-rajdhani font-bold text-xs uppercase text-slate-400 mb-2">Vehicle Model</label>
+                            <input type="text" id="book-vehicle" required="" placeholder="e.g. 2022 Nissan GT-R" class="w-full bg-apex-dark border border-slate-700 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-apex-red">
+                        </div>
+                        <div>
+                            <label class="block font-rajdhani font-bold text-xs uppercase text-slate-400 mb-2">Drivetrain</label>
+                            <select id="book-drivetrain" onchange="updateBookingSummary()" class="w-full bg-apex-dark border border-slate-700 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-apex-red">
+                                <option value="AWD Mainline Cell">AWD (Mainline Cell)</option>
+                                <option value="RWD Dynojet Cell">RWD (Dynojet Cell)</option>
+                                <option value="FWD Dynojet Cell">FWD (Dynojet Cell)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block font-rajdhani font-bold text-xs uppercase text-slate-400 mb-2">Service Package</label>
+                            <select id="book-package" onchange="updateBookingSummary()" class="w-full bg-apex-dark border border-slate-700 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-apex-red">
+                                <option value="Baseline Dyno Sweeps" data-price="199" data-duration="1 Hour">Baseline Pulls ($199)</option>
+                                <option value="Custom ECU Calibration" data-price="899" data-duration="3 Hours" selected="">Custom Tuning ($899)</option>
+                                <option value="Track &amp; Race Prep" data-price="1850" data-duration="Full Day">Race Prep ($1,850)</option>
+                                <option value="Fleet &amp; Diagnostics" data-price="349" data-duration="2 Hours">Diagnostics ($349)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block font-rajdhani font-bold text-xs uppercase text-slate-400 mb-2">Preferred Date</label>
+                            <input type="date" id="book-date" required="" class="w-full bg-apex-dark border border-slate-700 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-apex-red">
+                        </div>
+                        <div>
+                            <label class="block font-rajdhani font-bold text-xs uppercase text-slate-400 mb-2">Time Slot</label>
+                            <select id="book-time" class="w-full bg-apex-dark border border-slate-700 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-apex-red">
+                                <option value="09:00 AM">09:00 AM Morning</option>
+                                <option value="01:00 PM">01:00 PM Afternoon</option>
+                                <option value="05:00 PM">05:00 PM Evening</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="w-full py-4 rounded-xl bg-apex-red hover:bg-rose-600 text-white font-orbitron font-black text-sm uppercase tracking-widest shadow-xl shadow-apex-red/30 transition-all">
+                        Confirm Dyno Session
+                    </button>
+                </form>
+
+                <div class="lg:col-span-4 bg-apex-dark p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-orbitron font-bold text-base text-white border-b border-slate-800 pb-3 mb-4">
+                            Reservation Summary
+                        </h3>
+
+                        <div class="space-y-4 font-sans text-xs">
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Selected Cell:</span>
+                                <span id="summary-drivetrain" class="font-bold text-white">AWD Mainline Cell</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Package:</span>
+                                <span id="summary-package" class="font-bold text-apex-red">Custom ECU Calibration</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Est. Duration:</span>
+                                <span id="summary-duration" class="font-bold text-white">3 Hours</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-6 border-t border-slate-800 mt-6">
+                        <div class="flex justify-between items-baseline mb-2">
+                            <span class="font-rajdhani font-bold text-sm text-slate-400 uppercase">Estimated Total</span>
+                            <span id="summary-total" class="font-orbitron font-extrabold text-3xl text-white text-glow-red">$899</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Package Detail Modal -->
+    <div id="package-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+        <div class="glass-card border border-apex-red p-8 rounded-2xl max-w-lg w-full space-y-6">
+            <div class="flex justify-between items-start">
+                <div>
+                    <h3 id="modal-title" class="font-orbitron font-bold text-xl text-white">Package Title</h3>
+                    <span id="modal-price" class="font-orbitron font-extrabold text-2xl text-apex-red">Price</span>
+                </div>
+                <button onclick="closePackageModal()" class="text-slate-400 hover:text-white p-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="x" aria-hidden="true" class="lucide lucide-x w-6 h-6"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+                </button>
+            </div>
+            <p id="modal-desc" class="font-sans text-slate-300 text-sm leading-relaxed">Details...</p>
+            <a href="#booking" onclick="closePackageModal()" class="block text-center w-full py-3 rounded-xl bg-apex-red text-white font-orbitron font-bold text-xs uppercase tracking-wider">Book This Package</a>
+        </div>
+    </div>
+
+    <!-- Booking Confirmation Modal -->
+    <div id="booking-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+        <div class="glass-card border border-emerald-500 p-8 rounded-2xl max-w-lg w-full text-center space-y-6">
+            <div class="w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-500 text-emerald-400 flex items-center justify-center mx-auto">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="check-circle-2" aria-hidden="true" class="lucide lucide-check-circle-2 w-10 h-10"><circle cx="12" cy="12" r="10"></circle><path d="m16 9-5.5 5.5L8 12"></path></svg>
+            </div>
+            <h3 class="font-orbitron font-bold text-2xl text-white">Dyno Pass Reserved!</h3>
+            <p class="font-sans text-slate-300 text-sm">
+                Your reservation has been confirmed. A telemetry tech will reach out via email shortly.
+            </p>
+            <button onclick="closeBookingModal()" class="w-full py-3 rounded-xl bg-emerald-500 text-white font-orbitron font-bold text-xs uppercase">Close Confirmation</button>
+        </div>
+    </div>
+
+    <!-- Copy Notification Toast -->
+    <div id="copy-toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 max-w-sm w-full glass-card border border-apex-cyan p-4 rounded-xl shadow-2xl flex items-center gap-4">
+        <div class="w-10 h-10 rounded-full bg-apex-cyan/20 border border-apex-cyan flex items-center justify-center text-apex-cyan shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="code" aria-hidden="true" class="lucide lucide-code w-5 h-5"><path d="m16 18 6-6-6-6"></path><path d="m8 6-6 6 6 6"></path></svg>
+        </div>
+        <div>
+            <h4 class="font-orbitron font-bold text-sm text-white">Source Code Copied!</h4>
+            <p class="font-sans text-xs text-slate-300">Complete HTML document copied to clipboard.</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-apex-dark border-t border-apex-border py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-8 text-center sm:text-left">
+            <div>
+                <span class="font-orbitron font-bold text-xl text-white block mb-3">APEX DYNO LABS</span>
+                <p class="font-sans text-xs text-slate-400">
+                    Precision AWD/RWD chassis dynamometer testing, standalone ECU calibration, and thermal diagnostic engineering.
+                </p>
+            </div>
+            <div>
+                <span class="font-rajdhani font-bold text-sm text-slate-300 uppercase tracking-widest block mb-3">Operating Hours</span>
+                <p class="font-sans text-xs text-slate-400">Mon - Fri: 8:00 AM - 7:00 PM<br>Saturday: 9:00 AM - 5:00 PM</p>
+            </div>
+            <div>
+                <span class="font-rajdhani font-bold text-sm text-slate-300 uppercase tracking-widest block mb-3">Facility Location</span>
+                <p class="font-sans text-xs text-slate-400">1048 Performance Way, Bay 7<br>Motorsport Park, CA 90210</p>
+            </div>
+            <div>
+                <span class="font-rajdhani font-bold text-sm text-slate-300 uppercase tracking-widest block mb-3">Contact</span>
+                <p class="font-sans text-xs text-slate-400">dyno@apextuning.com<br>(555) 839-3966</p>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 text-center font-sans text-xs text-slate-500 pt-6 border-t border-slate-800">
+            © 2026 Apex Dyno Shop &amp; Calibration Facility. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // Copy Full Source Code Functionality
+        function copySourceCode() {
+            const fullCode = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(fullCode).then(showCopyToast).catch(() => fallbackCopy(fullCode));
+            } else {
+                fallbackCopy(fullCode);
+            }
+        }
+
+        function fallbackCopy(text) {
+            const textarea = document.createElement("textarea");
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand("copy");
+            document.body.removeChild(textarea);
+            showCopyToast();
+        }
+
+        function showCopyToast() {
+            const btnText = document.getElementById("top-copy-btn-text");
+            const toast = document.getElementById("copy-toast");
+            btnText.innerText = "Copied!";
+            toast.classList.remove("translate-y-24", "opacity-0");
+            toast.classList.add("translate-y-0", "opacity-100");
+
+            setTimeout(() => {
+                btnText.innerText = "Copy HTML Code";
+                toast.classList.remove("translate-y-0", "opacity-100");
+                toast.classList.add("translate-y-24", "opacity-0");
+            }, 3000);
+        }
+
+        // Leaderboard Data & Filtering
+        const leaderboardData = [
+            { id: 1, car: "Nissan GT-R Nismo", engine: "3.8L VR38DETT Twin-Turbo", hp: 1850, torque: 1320, type: "awd", tuner: "Apex Stage 3 Custom", tag: "RECORD AWD" },
+            { id: 2, car: "Lamborghini Huracán", engine: "5.2L V10 Twin-Turbo", hp: 1420, torque: 1050, type: "awd", tuner: "MoTeC M142 Standalone", tag: "TWIN TURBO" },
+            { id: 3, car: "Toyota Supra MKIV", engine: "3.0L 2JZ-GTE Billet", hp: 1180, torque: 920, type: "rwd", tuner: "Haltech Elite 2500", tag: "LEGEND RWD" },
+            { id: 4, car: "Honda Civic Type R", engine: "2.0L K20C1 Turbo", hp: 620, torque: 510, type: "fwd", tuner: "Hondata FlashPro", tag: "RECORD FWD" }
+        ];
+
+        function renderLeaderboard(data) {
+            const grid = document.getElementById("leaderboard-grid");
+            grid.innerHTML = "";
+            data.forEach(item => {
+                const card = document.createElement("div");
+                card.className = "glass-card glass-card-hover p-6 rounded-2xl border border-slate-800 flex flex-col justify-between";
+                card.innerHTML = `
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="px-2.5 py-1 rounded-full bg-apex-red/20 text-apex-red font-orbitron text-[10px] font-bold uppercase tracking-wider">${item.tag}</span>
+                            <span class="font-mono text-xs text-slate-500 uppercase">${item.type.toUpperCase()}</span>
+                        </div>
+                        <h3 class="font-orbitron font-bold text-lg text-white mb-1">${item.car}</h3>
+                        <p class="font-sans text-xs text-slate-400 mb-4">${item.engine}</p>
+                        <div class="grid grid-cols-2 gap-2 bg-apex-dark p-3 rounded-xl border border-slate-800 mb-4">
+                            <div>
+                                <span class="block text-[10px] font-rajdhani uppercase text-slate-500 font-bold">Wheel HP</span>
+                                <span class="font-orbitron font-extrabold text-xl text-white text-glow-red">${item.hp} HP</span>
+                            </div>
+                            <div>
+                                <span class="block text-[10px] font-rajdhani uppercase text-slate-500 font-bold">Torque</span>
+                                <span class="font-orbitron font-bold text-base text-apex-gold">${item.torque} TQ</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function filterLeaderboard(cat) {
+            document.querySelectorAll(".filter-btn").forEach(btn => {
+                btn.className = btn.getAttribute("data-filter") === cat 
+                    ? "filter-btn px-4 py-2 rounded-lg bg-apex-red text-white font-bold"
+                    : "filter-btn px-4 py-2 rounded-lg text-slate-400 hover:text-white font-bold";
+            });
+            renderLeaderboard(cat === "all" ? leaderboardData : leaderboardData.filter(d => d.type === cat));
+        }
+
+        // Power Calculator Engine
+        let currentFuelMult = 1.0;
+
+        function setCalcFuel(fuel, mult) {
+            currentFuelMult = mult;
+            document.querySelectorAll(".fuel-btn").forEach(btn => {
+                btn.className = btn.getAttribute("data-fuel") === fuel 
+                    ? "fuel-btn px-3 py-2.5 rounded-lg text-xs font-orbitron font-bold border border-apex-red bg-apex-red text-white"
+                    : "fuel-btn px-3 py-2.5 rounded-lg text-xs font-orbitron font-bold border border-slate-700 bg-apex-dark text-slate-300";
+            });
+            calculateGains();
+        }
+
+        function calculateGains() {
+            const baseHp = parseInt(document.getElementById("calc-hp-slider").value);
+            document.getElementById("calc-hp-val").innerText = baseHp;
+
+            let modPerc = 0;
+            if (document.getElementById("mod-intake").checked) modPerc += 0.05;
+            if (document.getElementById("mod-exhaust").checked) modPerc += 0.08;
+            if (document.getElementById("mod-intercooler").checked) modPerc += 0.06;
+            if (document.getElementById("mod-meth").checked) modPerc += 0.12;
+
+            const finalHp = Math.round(baseHp * 1.12 * currentFuelMult * (1 + modPerc));
+            const netGain = finalHp - baseHp;
+            const percentage = Math.round((netGain / baseHp) * 100);
+
+            document.getElementById("calc-result-hp").innerText = `${finalHp} HP`;
+            document.getElementById("calc-net-gain").innerText = `+${netGain} HP (+${percentage}% Gain)`;
+            document.getElementById("calc-result-tq").innerText = `${Math.round(finalHp * 0.92)} LB-FT`;
+            document.getElementById("calc-result-speed").innerText = `-${(netGain * 0.0035).toFixed(2)} sec`;
+        }
+
+        document.getElementById("calc-hp-slider").addEventListener("input", calculateGains);
+
+        // Dyno Visualizer + Web Audio API Engine
+        let selectedStage = 0;
+        let isDynoRunning = false;
+        let audioCtx = null;
+
+        const vehicleProfiles = {
+            'v8-gt': [ { hp: 580, tq: 550, boost: 14 }, { hp: 670, tq: 640, boost: 18 }, { hp: 760, tq: 720, boost: 22 }, { hp: 890, tq: 840, boost: 28 } ],
+            'jdm-i6': [ { hp: 380, tq: 360, boost: 12 }, { hp: 460, tq: 440, boost: 16 }, { hp: 580, tq: 550, boost: 22 }, { hp: 750, tq: 680, boost: 30 } ],
+            'v10-na': [ { hp: 610, tq: 420, boost: 6 }, { hp: 680, tq: 460, boost: 9 }, { hp: 780, tq: 520, boost: 12 }, { hp: 920, tq: 610, boost: 16 } ],
+            'ev-quad': [ { hp: 1020, tq: 1050, boost: 0 }, { hp: 1150, tq: 1180, boost: 0 }, { hp: 1300, tq: 1350, boost: 0 }, { hp: 1500, tq: 1600, boost: 0 } ]
+        };
+
+        function setSimStage(stage) {
+            selectedStage = stage;
+            document.querySelectorAll(".stage-btn").forEach(btn => {
+                btn.className = parseInt(btn.getAttribute("data-stage")) === stage
+                    ? "stage-btn px-3 py-2.5 rounded-lg text-xs font-orbitron font-bold border border-apex-red bg-apex-red text-white"
+                    : "stage-btn px-3 py-2.5 rounded-lg text-xs font-orbitron font-bold border border-slate-700 bg-apex-dark text-slate-300";
+            });
+            updateReadoutPreviews();
+        }
+
+        function updateReadoutPreviews() {
+            const vehKey = document.getElementById("sim-vehicle").value;
+            const data = vehicleProfiles[vehKey][selectedStage];
+            document.getElementById("readout-hp").innerText = `${data.hp} HP`;
+            document.getElementById("readout-tq").innerText = `${data.tq} TQ`;
+            document.getElementById("readout-boost").innerText = `${data.boost} PSI`;
+        }
+
+        document.getElementById("sim-vehicle").addEventListener("change", updateReadoutPreviews);
+
+        function playEngineSound(durationMs) {
+            if (!document.getElementById("sim-sound-toggle").checked) return;
+            try {
+                if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'sawtooth';
+                const now = audioCtx.currentTime;
+                const dur = durationMs / 1000;
+                osc.frequency.setValueAtTime(90, now);
+                osc.frequency.exponentialRampToValueAtTime(580, now + dur * 0.88);
+                gain.gain.setValueAtTime(0.01, now);
+                gain.gain.linearRampToValueAtTime(0.18, now + dur * 0.3);
+                gain.gain.linearRampToValueAtTime(0.01, now + dur);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start(now);
+                osc.stop(now + dur);
+            } catch (e) {}
+        }
+
+        function startDynoPass() {
+            if (isDynoRunning) return;
+            isDynoRunning = true;
+
+            const btn = document.getElementById("run-dyno-btn");
+            const statusLabel = document.getElementById("sim-status");
+            btn.disabled = true;
+            btn.classList.add("opacity-50");
+            statusLabel.innerText = "STATUS: RUN IN PROGRESS";
+            statusLabel.classList.add("text-apex-red");
+
+            const canvas = document.getElementById("dynoCanvas");
+            const ctx = canvas.getContext("2d");
+            const width = canvas.clientWidth;
+            const height = canvas.clientHeight;
+            canvas.width = width;
+            canvas.height = height;
+
+            const vehKey = document.getElementById("sim-vehicle").value;
+            const targetData = vehicleProfiles[vehKey][selectedStage];
+            const totalSteps = 100;
+            let step = 0;
+
+            playEngineSound(3200);
+            const hpPoints = [], tqPoints = [];
+
+            const interval = setInterval(() => {
+                step++;
+                const progress = step / totalSteps;
+                const rpm = Math.round(1000 + progress * 7500);
+
+                document.getElementById("live-rpm-number").innerText = rpm;
+                document.getElementById("rpm-progress-bar").style.width = `${progress * 100}%`;
+
+                const curHp = Math.round(targetData.hp * Math.pow(progress, 1.25));
+                const curTq = Math.round(targetData.tq * (Math.sin(progress * Math.PI) * 0.85 + 0.15));
+
+                hpPoints.push({ x: progress * width, y: height - (curHp / 1600) * height });
+                tqPoints.push({ x: progress * width, y: height - (curTq / 1600) * height });
+
+                ctx.clearRect(0, 0, width, height);
+
+                // Grid lines
+                ctx.strokeStyle = "rgba(255, 255, 255, 0.06)";
+                for (let x = 0; x < width; x += 40) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, height); ctx.stroke(); }
+
+                // HP Line (Neon Red)
+                if (hpPoints.length > 1) {
+                    ctx.beginPath();
+                    ctx.strokeStyle = "#FF2A38";
+                    ctx.lineWidth = 3;
+                    ctx.moveTo(hpPoints[0].x, hpPoints[0].y);
+                    for (let i = 1; i < hpPoints.length; i++) ctx.lineTo(hpPoints[i].x, hpPoints[i].y);
+                    ctx.stroke();
+                }
+
+                // Torque Line (Gold)
+                if (tqPoints.length > 1) {
+                    ctx.beginPath();
+                    ctx.strokeStyle = "#FFB800";
+                    ctx.lineWidth = 3;
+                    ctx.moveTo(tqPoints[0].x, tqPoints[0].y);
+                    for (let i = 1; i < tqPoints.length; i++) ctx.lineTo(tqPoints[i].x, tqPoints[i].y);
+                    ctx.stroke();
+                }
+
+                if (step >= totalSteps) {
+                    clearInterval(interval);
+                    isDynoRunning = false;
+                    btn.disabled = false;
+                    btn.classList.remove("opacity-50");
+                    statusLabel.innerText = "STATUS: PASS COMPLETE";
+                    statusLabel.classList.remove("text-apex-red");
+                    statusLabel.classList.add("text-emerald-400");
+                }
+            }, 32);
+        }
+
+        // Service Modal Handlers
+        function openPackageModal(title, price, desc) {
+            document.getElementById("modal-title").innerText = title;
+            document.getElementById("modal-price").innerText = price;
+            document.getElementById("modal-desc").innerText = desc;
+            document.getElementById("package-modal").classList.remove("hidden");
+        }
+
+        function closePackageModal() {
+            document.getElementById("package-modal").classList.add("hidden");
+        }
+
+        // Booking Form Handling
+        function updateBookingSummary() {
+            const drivetrain = document.getElementById("book-drivetrain").value;
+            const pkgSelect = document.getElementById("book-package");
+            const pkgName = pkgSelect.value;
+            const price = pkgSelect.options[pkgSelect.selectedIndex].getAttribute("data-price");
+            const duration = pkgSelect.options[pkgSelect.selectedIndex].getAttribute("data-duration");
+
+            document.getElementById("summary-drivetrain").innerText = drivetrain;
+            document.getElementById("summary-package").innerText = pkgName;
+            document.getElementById("summary-duration").innerText = duration;
+            document.getElementById("summary-total").innerText = `$${price}`;
+        }
+
+        function handleBookingSubmit(e) {
+            e.preventDefault();
+            document.getElementById("booking-modal").classList.remove("hidden");
+            document.getElementById("booking-form").reset();
+            updateBookingSummary();
+        }
+
+        function closeBookingModal() {
+            document.getElementById("booking-modal").classList.add("hidden");
+        }
+
+        document.getElementById("mobile-menu-toggle").addEventListener("click", () => {
+            document.getElementById("mobile-menu").classList.toggle("hidden");
+        });
+
+        window.addEventListener("DOMContentLoaded", () => {
+            lucide.createIcons();
+            filterLeaderboard('all');
+            calculateGains();
+            updateReadoutPreviews();
+            updateBookingSummary();
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            document.getElementById("book-date").value = tomorrow.toISOString().split('T')[0];
+        });
+    </script>
+
+</body></html>
